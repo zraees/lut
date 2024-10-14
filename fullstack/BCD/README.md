@@ -165,7 +165,11 @@ BCD/
 │   │   └── ...                   # Other Angular files
 │   ├── angular.json              # Angular configuration
 │   ├── package.json              # Frontend dependencies
-│   └── tsconfig.json             # TypeScript configuration
+│   ├── tsconfig.json             # TypeScript configuration
+│   └── tests/                    # Frontend test files
+│       ├── unit/                 # Unit tests
+│       ├── integration/          # Integration tests
+│       └── e2e/                  # End-to-end tests
 ├── backend/                      # Node.js backend
 │   ├── src/
 │   │   ├── config/               # Configuration files
@@ -178,7 +182,10 @@ BCD/
 │   │   ├── validations/          # Input validations
 │   │   ├── app.js                # Main application file
 │   │   └── server.js             # Server entry point
-│   ├── tests/                    # Test files
+│   ├── tests/                    # Backend test files
+│   │   ├── unit/                 # Unit tests
+│   │   ├── integration/          # Integration tests
+│   │   └── e2e/                  # End-to-end tests
 │   ├── package.json              # Backend dependencies
 │   └── .env                      # Environment variables
 ├── database/                     # Database scripts and migrations

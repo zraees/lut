@@ -2,11 +2,10 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using BCD.API.Middlewares;
-using BCD.Domain.Interfaces.Repositories;
 using BCD.Domain.Interfaces.Services;
 using BCD.Infrastructure;
-using BCD.Infrastructure.Repository;
 using BCD.Service.User;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddDbContext<BCDDbContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("BCDDbContext") ?? throw new InvalidOperationException("Connectionstring 'BCDDbContext' not found!"));
+});
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddHealthChecks();
 

@@ -10,10 +10,10 @@ const Header = () =>
         </a>
 
         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><Link to="/" className="nav-link px-2 link-secondary">Home</Link></li>
-          <li><Link to="businesses" className="nav-link px-2 link-body-emphasis">Businesses</Link></li>
-          <li><a href="#" className="nav-link px-2 link-body-emphasis">Services</a></li>
-          <li><a href="#" className="nav-link px-2 link-body-emphasis">About Us</a></li>
+          <li><Link to="/" className="nav-link px-2 link-body-emphasis">Home</Link></li>
+          <li><Link to="businesses" className="nav-link px-2 link-body-emphasis">Find a Business</Link></li>
+          <li><Link to="services" className="nav-link px-2 link-body-emphasis">Services</Link></li>
+          <li><Link to="about-us" className="nav-link px-2 link-body-emphasis">About Us</Link></li>
         </ul>
 
         <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">

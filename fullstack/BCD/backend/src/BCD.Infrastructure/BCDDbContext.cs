@@ -11,7 +11,11 @@ public class BCDDbContext : DbContext
 {
     public BCDDbContext(DbContextOptions<BCDDbContext> dbContextOptions) : base(dbContextOptions)
     {
+        // Ensure database is migrated to the latest version
+        Database.Migrate();
     }
+
+    public DbSet<UserType> UserTypes { get; set; }
 
     public DbSet<User> Users { get; set; }
 
@@ -62,7 +66,30 @@ public class BCDDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new UserTypeConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+        modelBuilder.Entity<UserType>().HasData(
+            new UserType { UserTypeId = 1, UserTypeName = "admin", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 0 }
+        );
+
+        modelBuilder.Entity<User>().HasData(
+            new User { UserId = 1, Username = "admin", Email = "developerxone@hotmail.com", PasswordHash = "admin123", UserTypeId = 1, CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 0 }
+        );
+
+        modelBuilder.Entity<Category>().HasData(
+            new Category { CategoryId = 1, Name = "Food", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
+            new Category { CategoryId = 2, Name = "Coffee", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
+            new Category { CategoryId = 3, Name = "Nightlife", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
+            new Category { CategoryId = 4, Name = "Fun", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
+            new Category { CategoryId = 5, Name = "Shopping", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 }
+        );
+        //SeedData(modelBuilder);
+    }
+
+    private void SeedData(ModelBuilder modelBuilder)
+    {
+        
     }
 }

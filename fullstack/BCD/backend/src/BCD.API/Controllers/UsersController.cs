@@ -25,9 +25,9 @@ public class UsersController : ControllerBase
     [HttpGet("GetAllUsers")]
     public async Task<IActionResult> GetAllUsers()
     {
-        return Ok(null);
-        //// get all Users through injected-service
-        //var Users = await _UserService.GetAllAsync().ConfigureAwait(false);
+        // get all Users through injected-service
+        var Users = await _UserService.GetUsersAsync().ConfigureAwait(false);
+        return Ok(Users);
 
         //// if return with sucess, show User data to client other wise badreqeust with error message.
         //if (Users.IsSuccess)

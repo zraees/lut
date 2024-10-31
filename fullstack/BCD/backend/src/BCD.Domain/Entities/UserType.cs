@@ -5,8 +5,7 @@ namespace BCD.Domain.Entities;
 public class UserType
 {
     public int UserTypeId { get; set; }
-    public string TypeName { get; set; }
-    public string Description { get; set; }
+    public string UserTypeName { get; set; }
 
     // Audit properties
     public DateTime CreatedAt { get; set; }

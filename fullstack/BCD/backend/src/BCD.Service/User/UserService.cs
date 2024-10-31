@@ -14,6 +14,11 @@ public class UserService : IUserService
         _unitOfWork = unitOfWork;
     }
 
+    public async Task<IEnumerable<Domain.Entities.User>> GetUsersAsync()
+    {
+        return await _unitOfWork.Users.GetAllAsync().ConfigureAwait(false);
+    }
+
     //public async Task<IEnumerable<User>> GetUsersAsync()
     //{
     //    return await _unitOfWork.Users.GetUsersAsync();

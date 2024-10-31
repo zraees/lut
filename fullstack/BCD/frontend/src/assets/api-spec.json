@@ -1,0 +1,22 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "BCD.API",
+      "version": "1.0"
+    },
+    "paths": {
+      "/api/Users/GetAllUsers": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      }
+    },
+    "components": { }
+  }

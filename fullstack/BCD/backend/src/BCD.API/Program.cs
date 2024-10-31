@@ -4,6 +4,7 @@
 using BCD.API.Middlewares;
 using BCD.Domain.Interfaces.Services;
 using BCD.Infrastructure;
+using BCD.Service.Category;
 using BCD.Service.User;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -18,6 +19,7 @@ builder.Services.AddDbContext<BCDDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("BCDDbContext") ?? throw new InvalidOperationException("Connectionstring 'BCDDbContext' not found!"));
 });
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddHealthChecks();
 
 // these two lines to configure Global exception handler and problem detail

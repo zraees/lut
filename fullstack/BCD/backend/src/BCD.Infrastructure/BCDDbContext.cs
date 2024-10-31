@@ -83,7 +83,8 @@ public class BCDDbContext : DbContext
             new Category { CategoryId = 2, Name = "Coffee", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
             new Category { CategoryId = 3, Name = "Nightlife", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
             new Category { CategoryId = 4, Name = "Fun", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
-            new Category { CategoryId = 5, Name = "Shopping", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 }
+            new Category { CategoryId = 5, Name = "Shopping", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
+            new Category { CategoryId = 6, Name = "Grocery", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 }
         );
         //SeedData(modelBuilder);
     }

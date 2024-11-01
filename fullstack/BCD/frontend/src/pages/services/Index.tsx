@@ -1,4 +1,4 @@
-const Services = () => {
+export const Index = () => {
     return (<div className="container ">
     
         <div className="p-5 mb-4 bg-body-tertiary rounded-3">
@@ -27,5 +27,3 @@ const Services = () => {
         </div>
       </div>);
 }
-
-export default Services;

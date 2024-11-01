@@ -1,6 +1,6 @@
-import BusinessSearchCriteria from "../features/business/BusinessSearchCriteria";
+import BusinessSearchCriteria from "../../components/business/BusinessSearchCriteria";
 
-const Businesses = () => {
+export const Index = () => {
     return (<main>
 
         <BusinessSearchCriteria />
@@ -152,5 +152,3 @@ const Businesses = () => {
       
       </main>);
 }
-
-export default Businesses;

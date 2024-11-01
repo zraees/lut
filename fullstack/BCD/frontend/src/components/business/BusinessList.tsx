@@ -1,4 +1,4 @@
-import Feature from "../../components/Feature";
+import Feature from "./Feature";
 
 const BusinessList = () => {
   return (

@@ -1,7 +1,10 @@
 import { Form } from "react-router-dom";
 import { FaSearchLocation } from "react-icons/fa";
+import { useState } from "react";
 
-const BusinessSearchCriteria = () => {
+const SearchCriteria = () => {
+  const [business, setBusiness] = useState("");
+
   return (
     <section className="py-5 text-center container">
       <div className="row py-lg-1">
@@ -22,7 +25,8 @@ const BusinessSearchCriteria = () => {
                   className="form-control"
                   id="business"
                   placeholder="I'm looking for ..."
-                  value=""
+                  value={business}
+                  onChange={(e)=>setBusiness(e.target.value)}
                 />
               </div>
 
@@ -31,13 +35,13 @@ const BusinessSearchCriteria = () => {
                   type="text"
                   className="form-control"
                   id="zipCode"
+                  data-testid="zip-code"
                   placeholder="Zip code or City"
-                  value=""
                 />
               </div>
 
               <div className="col-md-auto">
-                <button className="btn btn-success" type="submit">
+                <button className="btn btn-success" type="submit" onClick={()=> {setBusiness("local")}}>
                   <FaSearchLocation /> Search
                 </button>
               </div>
@@ -82,4 +86,4 @@ const BusinessSearchCriteria = () => {
   );
 };
 
-export default BusinessSearchCriteria;
+export default SearchCriteria;

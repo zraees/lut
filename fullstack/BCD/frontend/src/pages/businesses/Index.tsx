@@ -1,9 +1,9 @@
-import BusinessSearchCriteria from "../../components/business/BusinessSearchCriteria";
+import SearchCriteria from "../../components/business/SearchCriteria";
 
 export const Index = () => {
     return (<main>
 
-        <BusinessSearchCriteria />
+        <SearchCriteria />
         
         <div className="album py-5 bg-body-tertiary">
           <div className="container">

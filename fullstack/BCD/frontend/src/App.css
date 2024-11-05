@@ -1,9 +1,31 @@
 body{
-  background-color: #F9F9F9;
+  /* background-color: #F9F9F9; */
   font-family: 'Roboto', sans-serif;
 }
+
 h1, h2, h3, h4 {
   font-family: 'Open Sans', sans-serif;
+}
+
+.app {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* .bg-dark h1,
+.bg-dark a {
+    color: white !important; 
+}
+
+.bg-light h1,
+.bg-light a {
+    color: black; 
+} */
+
+.theme-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
 }
 
 ul.categories {

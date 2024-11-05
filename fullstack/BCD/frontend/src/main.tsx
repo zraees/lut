@@ -7,6 +7,7 @@ import { Index as Home } from "./pages/home/Index";
 import { Index as Services } from "./pages/services/Index";
 import { Index as Businesses } from "./pages/businesses/Index";
 import { Index as AboutUs } from "./pages/about-us/Index";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <ThemeProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </ThemeProvider>{" "}
   </StrictMode>
 );

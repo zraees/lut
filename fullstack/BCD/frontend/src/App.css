@@ -11,6 +11,9 @@ h1, h2, h3, h4 {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.active {
+  text-decoration: underline;
+}
 /* .bg-dark h1,
 .bg-dark a {
     color: white !important; 

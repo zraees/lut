@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { LuMoonStar, LuSun } from "react-icons/lu";
 
 const Header = () => {
@@ -28,24 +28,24 @@ const Header = () => {
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li>
               {/* link-body-emphasis */}
-              <Link to="/" className="nav-link px-2 active">
+              <NavLink to="/" className="nav-link px-2">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="businesses" className="nav-link px-2">
+              <NavLink to="businesses" className="nav-link px-2">
                 Find a Business
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="services" className="nav-link px-2">
+              <NavLink to="services" className="nav-link px-2">
                 Services
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="about-us" className="nav-link px-2">
+              <NavLink to="about-us" className="nav-link px-2">
                 About Us
-              </Link>
+              </NavLink>
             </li>
           </ul>
 

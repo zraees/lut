@@ -1,0 +1,6 @@
+@WorldCareCenter.Api_HostAddress = http://localhost:5054
+
+GET {{WorldCareCenter.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

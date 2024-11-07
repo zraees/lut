@@ -1,0 +1,145 @@
+﻿@page "/weather"
+@using WorldCareCenter.Api.DTOs
+@using WorldCareCenter.Api.Entities
+@inject HttpClient Http
+@rendermode InteractiveServer
+
+
+<PageTitle>World Care Center</PageTitle>
+
+@* <h1>Finland Care Center</h1>
+ *@
+<h4>
+    <select @onchange="OnLocationChange">
+        <option value="Helsinki">Helsinki</option>
+        <option value="Lahti">Lahti</option>
+        <option value="Turku">Turku</option>
+    </select>
+</h4>
+
+<div class="row">
+    <div class="col-md-6">
+        <h5>Doctors Data (Replicated in all locations)</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Speciality</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var doctor in completeDatasetDTO.Doctors)
+                {
+                    <tr>
+                        <td>@doctor.DoctorID</td>
+                        <td>@doctor.Name</td>
+                        <td>@doctor.Email</td>
+                        <td>@doctor.Specialty</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h5>Patient Data (location specific data / data fragmentation)</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Patient File No</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var doctor in completeDatasetDTO.Patients)
+                {
+                    <tr>
+                        <td>@doctor.PatientFileNo</td>
+                        <td>@doctor.PatientName</td>
+                        <td>@doctor.Gender</td>
+                        <td>@doctor.Email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h5>Invoice Data (location specific data / data fragmentation)</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Invoice Amount</th>
+                    <th>Patient ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var doctor in completeDatasetDTO.Invoices)
+                {
+                    <tr>
+                        <td>@doctor.InvoiceID</td>
+                        <td>@doctor.Date</td>
+                        <td>@doctor.InvoiceAmount</td>
+                        <td>@doctor.PatientID</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h5>Invoice Detail Data (location specific data / data fragmentation)</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Invoice Detail ID</th>
+                    <th>Invoice ID</th>
+                    <th>Line Item</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var doctor in completeDatasetDTO.InvoiceDetails)
+                {
+                    <tr>
+                        <td>@doctor.InvoiceDetailId</td>
+                        <td>@doctor.InvoiceId</td>
+                        <td>@doctor.InvoiceLineItem</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private CompleteDatasetDTO completeDatasetDTO = new ();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData("helsinki");
+    }
+
+    private async Task OnLocationChange(ChangeEventArgs e)
+    {
+        await LoadData(e.Value.ToString());
+    }
+
+    private async Task LoadData(string location)
+    {
+        //Console.WriteLine("Load data");
+
+        completeDatasetDTO = new CompleteDatasetDTO();
+
+        //Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+
+        completeDatasetDTO = await Http.GetFromJsonAsync<CompleteDatasetDTO>($"/api/Data/" + location).ConfigureAwait(false);
+    }
+
+}

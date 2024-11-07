@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WorldCareCenter.Api.Entities;
-using WorldCareCenter.Api.Helper;
+using WorldCareCenter.Api.DTOs;
 using WorldCareCenter.Api.Models;
 
 namespace WorldCareCenter.Api.Controllers
@@ -15,8 +13,8 @@ namespace WorldCareCenter.Api.Controllers
         private readonly HelsinkiDBContext _helsinkiDBContext;
         private readonly TurkuDBContext _turkuDBContext;
 
-        public DataController(LahtiDBContext lahtiDBContext, 
-            HelsinkiDBContext helsinkiDBContext, 
+        public DataController(LahtiDBContext lahtiDBContext,
+            HelsinkiDBContext helsinkiDBContext,
             TurkuDBContext turkuDBContext)
         {
             this._lahtiDBContext = lahtiDBContext;
@@ -27,24 +25,32 @@ namespace WorldCareCenter.Api.Controllers
         [HttpGet("{location}")]
         public async Task<IActionResult> GetDoctors(string location)
         {
-            List<Doctor> doctors = [];
-
+            CompleteDatasetDTO completeDatasetDTO = new();
             switch (location.ToLower())
             {
                 case "lahti":
-                    doctors = await _lahtiDBContext.Doctors.ToListAsync();
+                    completeDatasetDTO.Doctors = await _lahtiDBContext.Doctors.ToListAsync();
+                    completeDatasetDTO.Patients = await _lahtiDBContext.Patients.ToListAsync();
+                    completeDatasetDTO.Invoices = await _lahtiDBContext.Invoices.ToListAsync();
+                    completeDatasetDTO.InvoiceDetails = await _lahtiDBContext.InvoiceDetails.ToListAsync();
                     break;
                 case "helsinki":
-                    doctors = await _helsinkiDBContext.Doctors.ToListAsync();
+                    completeDatasetDTO.Doctors = await _helsinkiDBContext.Doctors.ToListAsync();
+                    completeDatasetDTO.Patients = await _helsinkiDBContext.Patients.ToListAsync();
+                    completeDatasetDTO.Invoices = await _helsinkiDBContext.Invoices.ToListAsync();
+                    completeDatasetDTO.InvoiceDetails = await _helsinkiDBContext.InvoiceDetails.ToListAsync();
                     break;
                 case "turku":
-                    doctors = await _turkuDBContext.Doctors.ToListAsync();
+                    completeDatasetDTO.Doctors = await _turkuDBContext.Doctors.ToListAsync();
+                    completeDatasetDTO.Patients = await _turkuDBContext.Patients.ToListAsync();
+                    completeDatasetDTO.Invoices = await _turkuDBContext.Invoices.ToListAsync();
+                    completeDatasetDTO.InvoiceDetails = await _turkuDBContext.InvoiceDetails.ToListAsync();
                     break;
                 default:
                     break;
             }
 
-            return Ok(doctors);
+            return Ok(completeDatasetDTO);
         }
     }
 }

@@ -109,6 +109,43 @@ namespace WorldCareCenter.Api.Migrations.HelsinkiDB
                     b.HasKey("InvoiceID");
 
                     b.ToTable("Invoices");
+
+                    b.HasData(
+                        new
+                        {
+                            InvoiceID = 1,
+                            Date = new DateOnly(2024, 1, 26),
+                            InvoiceAmount = 180m,
+                            PatientID = 1
+                        },
+                        new
+                        {
+                            InvoiceID = 2,
+                            Date = new DateOnly(2024, 2, 15),
+                            InvoiceAmount = 80m,
+                            PatientID = 5
+                        },
+                        new
+                        {
+                            InvoiceID = 3,
+                            Date = new DateOnly(2024, 6, 11),
+                            InvoiceAmount = 139m,
+                            PatientID = 2
+                        },
+                        new
+                        {
+                            InvoiceID = 4,
+                            Date = new DateOnly(2024, 11, 16),
+                            InvoiceAmount = 115m,
+                            PatientID = 4
+                        },
+                        new
+                        {
+                            InvoiceID = 5,
+                            Date = new DateOnly(2023, 12, 4),
+                            InvoiceAmount = 941m,
+                            PatientID = 5
+                        });
                 });
 
             modelBuilder.Entity("WorldCareCenter.Api.Entities.InvoiceDetail", b =>
@@ -127,6 +164,56 @@ namespace WorldCareCenter.Api.Migrations.HelsinkiDB
                     b.HasKey("InvoiceDetailId");
 
                     b.ToTable("InvoiceDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            InvoiceDetailId = 1,
+                            InvoiceId = 4,
+                            InvoiceLineItem = "First record"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 2,
+                            InvoiceId = 2,
+                            InvoiceLineItem = "Second record"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 3,
+                            InvoiceId = 2,
+                            InvoiceLineItem = "this is medi detail"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 4,
+                            InvoiceId = 5,
+                            InvoiceLineItem = "Medicine receipt"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 5,
+                            InvoiceId = 4,
+                            InvoiceLineItem = "Planning data"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 6,
+                            InvoiceId = 2,
+                            InvoiceLineItem = "available list"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 7,
+                            InvoiceId = 3,
+                            InvoiceLineItem = "doctor details"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 8,
+                            InvoiceId = 1,
+                            InvoiceLineItem = "patient record"
+                        });
                 });
 
             modelBuilder.Entity("WorldCareCenter.Api.Entities.Patient", b =>
@@ -154,6 +241,48 @@ namespace WorldCareCenter.Api.Migrations.HelsinkiDB
                     b.HasKey("PatientID");
 
                     b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            PatientID = 1,
+                            Email = "robert.lee@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "513-001",
+                            PatientName = "Robert Lee"
+                        },
+                        new
+                        {
+                            PatientID = 2,
+                            Email = "david.wilson@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "633-957",
+                            PatientName = "David Wilson"
+                        },
+                        new
+                        {
+                            PatientID = 3,
+                            Email = "margaret.young@example.com",
+                            Gender = "Female",
+                            PatientFileNo = "413-104",
+                            PatientName = "Margaret Young"
+                        },
+                        new
+                        {
+                            PatientID = 4,
+                            Email = "charles.king@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "952-204",
+                            PatientName = "Charles King"
+                        },
+                        new
+                        {
+                            PatientID = 5,
+                            Email = "thomas.scott@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "145-304",
+                            PatientName = "Thomas Scott"
+                        });
                 });
 #pragma warning restore 612, 618
         }

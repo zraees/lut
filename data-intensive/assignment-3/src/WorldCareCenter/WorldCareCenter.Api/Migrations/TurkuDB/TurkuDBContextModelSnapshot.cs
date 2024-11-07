@@ -109,6 +109,43 @@ namespace WorldCareCenter.Api.Migrations.TurkuDB
                     b.HasKey("InvoiceID");
 
                     b.ToTable("Invoices");
+
+                    b.HasData(
+                        new
+                        {
+                            InvoiceID = 1,
+                            Date = new DateOnly(2024, 8, 23),
+                            InvoiceAmount = 980m,
+                            PatientID = 2
+                        },
+                        new
+                        {
+                            InvoiceID = 2,
+                            Date = new DateOnly(2024, 7, 3),
+                            InvoiceAmount = 580m,
+                            PatientID = 1
+                        },
+                        new
+                        {
+                            InvoiceID = 3,
+                            Date = new DateOnly(2024, 6, 12),
+                            InvoiceAmount = 740m,
+                            PatientID = 2
+                        },
+                        new
+                        {
+                            InvoiceID = 4,
+                            Date = new DateOnly(2024, 5, 6),
+                            InvoiceAmount = 120m,
+                            PatientID = 3
+                        },
+                        new
+                        {
+                            InvoiceID = 5,
+                            Date = new DateOnly(2024, 3, 4),
+                            InvoiceAmount = 156m,
+                            PatientID = 5
+                        });
                 });
 
             modelBuilder.Entity("WorldCareCenter.Api.Entities.InvoiceDetail", b =>
@@ -127,6 +164,56 @@ namespace WorldCareCenter.Api.Migrations.TurkuDB
                     b.HasKey("InvoiceDetailId");
 
                     b.ToTable("InvoiceDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            InvoiceDetailId = 1,
+                            InvoiceId = 1,
+                            InvoiceLineItem = "First Item"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 2,
+                            InvoiceId = 1,
+                            InvoiceLineItem = "Second Item"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 3,
+                            InvoiceId = 2,
+                            InvoiceLineItem = "Second Item"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 4,
+                            InvoiceId = 3,
+                            InvoiceLineItem = "Medicine Item"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 5,
+                            InvoiceId = 4,
+                            InvoiceLineItem = "Planning Item"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 6,
+                            InvoiceId = 5,
+                            InvoiceLineItem = "Item 1"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 7,
+                            InvoiceId = 2,
+                            InvoiceLineItem = "Two Item"
+                        },
+                        new
+                        {
+                            InvoiceDetailId = 8,
+                            InvoiceId = 3,
+                            InvoiceLineItem = "3rd Item"
+                        });
                 });
 
             modelBuilder.Entity("WorldCareCenter.Api.Entities.Patient", b =>
@@ -154,6 +241,48 @@ namespace WorldCareCenter.Api.Migrations.TurkuDB
                     b.HasKey("PatientID");
 
                     b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            PatientID = 1,
+                            Email = "emily.johnson@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "123-422",
+                            PatientName = "Emily Johnson"
+                        },
+                        new
+                        {
+                            PatientID = 2,
+                            Email = "michael.brown@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "333-467",
+                            PatientName = "Michael Brown"
+                        },
+                        new
+                        {
+                            PatientID = 3,
+                            Email = "sarah.davis@example.com",
+                            Gender = "Female",
+                            PatientFileNo = "433-454",
+                            PatientName = "Sarah Davis"
+                        },
+                        new
+                        {
+                            PatientID = 4,
+                            Email = "laura.thomas@example.com",
+                            Gender = "Female",
+                            PatientFileNo = "553-344",
+                            PatientName = "Laura Thomas"
+                        },
+                        new
+                        {
+                            PatientID = 5,
+                            Email = "linda.martin@example.com",
+                            Gender = "Female",
+                            PatientFileNo = "983-124",
+                            PatientName = "Linda Martin"
+                        });
                 });
 #pragma warning restore 612, 618
         }

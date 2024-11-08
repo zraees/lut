@@ -8,6 +8,7 @@ public interface IUnitOfWork : IDisposable
 {
     IUserRepository Users { get; }
     ICategoryRepository Categories { get; }
+    IBusinessRepository Businesses { get; }
     // Add other repositories here
 
     Task<int> SaveAsync();

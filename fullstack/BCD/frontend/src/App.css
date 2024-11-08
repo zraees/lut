@@ -51,6 +51,21 @@ ul.categories>li.categories a.cateoryLink span {
   padding: 40px 10px 7px;
 }
 
+.business-bg {
+  background-image: url('/images/business-bg.webp');  /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;  /* Full viewport height */
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* color: white; */
+}
+
+.business-card {
+  text-align: justify;
+}
 /*
 Soft Neutrals (Light Gray or Off-White)
 

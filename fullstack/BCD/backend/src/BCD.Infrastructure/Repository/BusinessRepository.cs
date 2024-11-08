@@ -5,7 +5,7 @@ using BCD.Domain.Entities;
 using BCD.Domain.Interfaces.Repositories;
 
 namespace BCD.Infrastructure.Repository;
-public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+public class BusinessRepository : GenericRepository<Business>, IBusinessRepository
 {
-    public CategoryRepository(BCDDbContext context) : base(context) { }
+    public BusinessRepository(BCDDbContext context) : base(context) { }
 }

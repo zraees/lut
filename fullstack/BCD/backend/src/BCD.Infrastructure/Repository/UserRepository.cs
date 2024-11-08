@@ -3,7 +3,6 @@
 
 using BCD.Domain.Entities;
 using BCD.Domain.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace BCD.Infrastructure.Repository;
 public class UserRepository : GenericRepository<User>, IUserRepository

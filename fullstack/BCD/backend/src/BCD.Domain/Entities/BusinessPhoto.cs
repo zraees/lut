@@ -17,5 +17,5 @@ public class BusinessPhoto
     public DateTime? UpdatedAt { get; set; }
     public int? UpdatedBy { get; set; }
 
-    public virtual Business Business { get; set; }
+    //public virtual Business Business { get; set; }
 }

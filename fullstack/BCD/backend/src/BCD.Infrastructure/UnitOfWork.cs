@@ -15,11 +15,13 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
         Users = new UserRepository(_context);
         Categories = new CategoryRepository(_context);
+        Businesses = new BusinessRepository(_context);
         // Initialize other repositories here
     }
 
     public IUserRepository Users { get; private set; }
     public ICategoryRepository Categories { get; private set; }
+    public IBusinessRepository Businesses { get; private set; }
 
     public async Task<int> SaveAsync()
     {

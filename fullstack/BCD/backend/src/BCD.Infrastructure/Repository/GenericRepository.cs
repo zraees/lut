@@ -21,6 +21,19 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _dbSet.ToListAsync();
     }
 
+    // Overload to accept navigation properties
+    public async Task<IEnumerable<T>> GetAllAsync(params string[] navigationProperties)
+    {
+        IQueryable<T> query = _dbSet;
+
+        foreach (var navigationProperty in navigationProperties)
+        {
+            query = query.Include(navigationProperty);
+        }
+
+        return await query.ToListAsync();
+    }
+
     public async Task<T> GetByIdAsync(int id)
     {
         return await _dbSet.FindAsync(id);

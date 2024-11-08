@@ -21,6 +21,10 @@ public class BCDDbContext : DbContext
 
     public DbSet<Category> Categories { get; set; }
 
+    public DbSet<Business> Businesses { get; set; }
+
+    public DbSet<BusinessPhoto> BusinessPhotos { get; set; }
+
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var modifiedEntities = ChangeTracker.Entries()
@@ -70,6 +74,12 @@ public class BCDDbContext : DbContext
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
 
+        SeedData(modelBuilder);
+    }
+
+    private void SeedData(ModelBuilder modelBuilder)
+    {
+
         modelBuilder.Entity<UserType>().HasData(
             new UserType { UserTypeId = 1, UserTypeName = "admin", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 0 }
         );
@@ -86,11 +96,8 @@ public class BCDDbContext : DbContext
             new Category { CategoryId = 5, Name = "Shopping", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 },
             new Category { CategoryId = 6, Name = "Grocery", Description = "", CreatedAt = new DateTime(2024, 10, 1), CreatedBy = 1 }
         );
-        //SeedData(modelBuilder);
-    }
 
-    private void SeedData(ModelBuilder modelBuilder)
-    {
-        
+        //modelBuilder.Entity<Business>() .HasData(
+        //    new Business() { BusinessId = 1, Name = "", CategoryId =1, }
     }
 }

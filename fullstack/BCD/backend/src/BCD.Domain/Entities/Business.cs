@@ -24,4 +24,6 @@ public class Business
 
     public virtual User Owner { get; set; }
     public virtual Category Category { get; set; }
+
+    public virtual ICollection<BusinessPhoto> BusinessPhotos { get; set; } = new List<BusinessPhoto>();
 }

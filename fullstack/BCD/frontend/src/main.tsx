@@ -8,6 +8,7 @@ import { Index as Services } from "./pages/services/Index";
 import { Index as Businesses } from "./pages/businesses/Index";
 import { Index as AboutUs } from "./pages/about-us/Index";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import BusinessDetail from "./components/business/BusinessDetail";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "businesses", element: <Businesses /> },
+      { path: "business-detail/:id", element: <BusinessDetail /> },
       { path: "services", element: <Services /> },
       { path: "about-us", element: <AboutUs /> },
     ],

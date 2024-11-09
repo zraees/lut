@@ -65,6 +65,7 @@ ul.categories>li.categories a.cateoryLink span {
 
 .business-card {
   text-align: justify;
+  cursor: pointer;
 }
 /*
 Soft Neutrals (Light Gray or Off-White)

@@ -28,4 +28,5 @@ export interface IBusinessPhoto {
 
 export interface IBusinessCardProps {
   business: IBusiness;
+  redirectToDetail: any;
 }

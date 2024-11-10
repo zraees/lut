@@ -33,4 +33,6 @@ public class Business
     public virtual City City { get; set; }
 
     public virtual ICollection<BusinessPhoto> BusinessPhotos { get; set; } = new List<BusinessPhoto>();
+
+    public virtual ICollection<BusinessReview> BusinessReviews { get; set; } = new List<BusinessReview>();
 }

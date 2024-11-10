@@ -25,6 +25,8 @@ public class BCDDbContext : DbContext
 
     public DbSet<BusinessPhoto> BusinessPhotos { get; set; }
 
+    public DbSet<BusinessReview> BusinessReviews { get; set; }
+
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var modifiedEntities = ChangeTracker.Entries()

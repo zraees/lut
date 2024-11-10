@@ -55,8 +55,16 @@ public class BusinessesController : ControllerBase
                 p.businessPhotoId,
                 p.BusinessId,
                 p.Url
-            }
-            ),
+            }),
+            BusinessReviews = x.BusinessReviews?.Select(p => new
+            {
+                p.BusinessReviewId,
+                p.BusinessId,
+                p.Rating,
+                p.Comment,
+                p.CreatedAt,
+                User = new { p.UserId }
+            }),
         });
 
         return Ok(result);
@@ -104,8 +112,16 @@ public class BusinessesController : ControllerBase
                 p.businessPhotoId,
                 p.BusinessId,
                 p.Url
-            }
-            ),
+            }),
+            BusinessReviews = x.BusinessReviews?.Select(p => new
+            {
+                p.BusinessReviewId,
+                p.BusinessId,
+                p.Rating,
+                p.Comment,
+                p.CreatedAt,
+                User = new { p.UserId }
+            })
         });
 
         return Ok(result);

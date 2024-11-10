@@ -15,6 +15,7 @@ export interface IBusiness {
   category: ICategory;
   ownerId: number;
   businessPhotos: IBusinessPhoto[];
+  businessReviews: IBusinessReview[];
 }
 
 export interface ICity {
@@ -35,6 +36,19 @@ export interface IBusinessPhoto {
   description: string;
 }
 
+export interface IBusinessReview {
+  businessReviewId: number;
+  businessId: number;
+  rating: number;
+  comment: string;
+  createdAt: Date;
+  user: IUser;
+}
+
+export interface IUser {
+  userId: number;
+}
+
 export interface IBusinessCardMapProps {
   latitude: number
   longitude: number
@@ -52,4 +66,8 @@ export interface IBusinessPhotoProp {
 
 export interface IBusinessOverviewProp {
   business: IBusiness;
+}
+
+export interface IBusinessReviewsProp {
+  businessReviews: IBusinessReview[];
 }

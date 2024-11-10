@@ -4,6 +4,7 @@ using BCD.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BCD.Infrastructure.Migrations
 {
     [DbContext(typeof(BCDDbContext))]
-    partial class BCDDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241110213050_Add-Business-Review-1")]
+    partial class AddBusinessReview1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -422,13 +425,11 @@ namespace BCD.Infrastructure.Migrations
 
             modelBuilder.Entity("BCD.Domain.Entities.BusinessReview", b =>
                 {
-                    b.HasOne("BCD.Domain.Entities.Business", "Business")
+                    b.HasOne("BCD.Domain.Entities.Business", null)
                         .WithMany("BusinessReviews")
                         .HasForeignKey("BusinessId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Business");
                 });
 
             modelBuilder.Entity("BCD.Domain.Entities.User", b =>

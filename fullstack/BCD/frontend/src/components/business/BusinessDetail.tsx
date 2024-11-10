@@ -4,11 +4,12 @@ import CustomCarousel from "../shared/CustomCarousel";
 import BusinessOverview from "./BusinessOverview";
 import { Tab, Tabs } from "react-bootstrap";
 import { useState } from "react";
+import BusinessReviews from "./BusinessReviews";
 
 const BusinessDetail = () => {
   const location = useLocation();
   const business = location.state;
-  const [key, setKey] = useState("link-1"); // Manage the active tab
+  const [key, setKey] = useState("tabOverview"); // Manage the active tab
 
   //console.log('business.latitude', business.latitude, business.longitude)
   return (
@@ -27,11 +28,11 @@ const BusinessDetail = () => {
             onSelect={(k) => setKey(k)}
             id="controlled-tab-example"
           >
-            <Tab eventKey="link-1" title="Overview">
+            <Tab eventKey="tabOverview" title="Overview">
               <BusinessOverview business={business}></BusinessOverview>
             </Tab>
-            <Tab eventKey="link-2" title="Reviews">
-              <p>Content for Option 2</p>
+            <Tab eventKey="tabReviews" title="Reviews">
+              <BusinessReviews businessReviews={business.businessReviews}></BusinessReviews>
             </Tab>
           </Tabs>
         </div>

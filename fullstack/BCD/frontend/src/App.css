@@ -14,6 +14,18 @@ h1, h2, h3, h4 {
 .active {
   text-decoration: underline;
 }
+
+/* Only underline tab navigation links */
+.nav-link {
+  text-decoration: underline;
+}
+
+/* Remove underline from content inside Tab */
+.tab-content p,
+.tab-content div {
+  text-decoration: none !important;
+}
+
 /* .bg-dark h1,
 .bg-dark a {
     color: white !important; 
@@ -67,6 +79,34 @@ ul.categories>li.categories a.cateoryLink span {
   text-align: justify;
   cursor: pointer;
 }
+
+.map-container {
+  min-height: 300px;
+  min-width: 900px;
+  width: 100%; /* Ensures container takes full width available */
+}
+
+.business-img-rounded {
+  max-height: 350px;
+  border-radius: var(--bs-border-radius) !important;
+  min-width: 610px;
+}
+
+/* Mobile screens (width <= 767px) */
+@media (max-width: 767px) {
+  .map-container {
+    min-height: 200px;  /* Reduce the minimum height for smaller screens */
+    min-width: 100%;    /* Make the container take full width on small screens */
+  }
+
+  .business-img-rounded {
+    max-height: 200px;
+    border-radius: var(--bs-border-radius) !important;
+    min-width: 100%;
+  }
+  
+}
+
 /*
 Soft Neutrals (Light Gray or Off-White)
 

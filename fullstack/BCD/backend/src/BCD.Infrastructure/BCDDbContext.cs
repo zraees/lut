@@ -73,6 +73,7 @@ public class BCDDbContext : DbContext
         modelBuilder.ApplyConfiguration(new UserTypeConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new BusinessConfiguration());
 
         SeedData(modelBuilder);
     }

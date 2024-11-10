@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SearchCriteria from "../../components/business/SearchCriteria";
 import BusinessService from "../../services/business-service";
 import BusinessCard from "../../components/business/BusinessCard";
-import { IBusiness } from "../../types";
+import { IBusiness } from "../../types/types";
 import { useNavigate } from "react-router-dom";
 
 export const Index = () => {
@@ -27,7 +27,7 @@ export const Index = () => {
   }, []);
 
   const redirectToDetail = (business: IBusiness) => {
-    console.log('businessId', business.businessId);
+    //console.log('businessId', business.businessId);
     navigate(`/business-detail/${business.businessId}`, { state: business});
   }
 

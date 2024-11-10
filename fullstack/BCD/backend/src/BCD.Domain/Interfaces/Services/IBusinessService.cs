@@ -8,4 +8,6 @@ public interface IBusinessService
 {
     Task<IEnumerable<Business>> GetBusinessesAsync();
     //Task<int> CreateUserAsync(Business Business);
+
+    Task<IEnumerable<Business>> GetFeatureBusinessesAsync();
 }

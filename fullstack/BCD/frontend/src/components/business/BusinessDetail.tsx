@@ -1,65 +1,48 @@
 import { useLocation } from "react-router-dom";
 import CustomMap from "../map/CustomMap";
+import CustomCarousel from "../shared/CustomCarousel";
+import BusinessOverview from "./BusinessOverview";
+import { Tab, Tabs } from "react-bootstrap";
+import { useState } from "react";
 
 const BusinessDetail = () => {
   const location = useLocation();
   const business = location.state;
+  const [key, setKey] = useState("link-1"); // Manage the active tab
+
+  //console.log('business.latitude', business.latitude, business.longitude)
   return (
     <div className="container ">
-      <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 className="display-4 fw-normal text-body-emphasis">{business.name}</h1>
-        <p className="fs-5 text-body-secondary">
-          Quickly build an effective pricing table for your potential customers
-          with this Bootstrap example. It’s built with default Bootstrap
-          components and utilities with little customization.
-        </p>
+      <h1 className="display-6">Business Details</h1>
+
+      <div className="row flex-lg-row g-1 py-4">
+        <div className="col-10 col-sm-8 col-lg-6">
+          <CustomCarousel
+            businessPhotos={business?.businessPhotos}
+          ></CustomCarousel>
+        </div>
+        <div className="col-lg-6">
+          <Tabs
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
+            id="controlled-tab-example"
+          >
+            <Tab eventKey="link-1" title="Overview">
+              <BusinessOverview business={business}></BusinessOverview>
+            </Tab>
+            <Tab eventKey="link-2" title="Reviews">
+              <p>Content for Option 2</p>
+            </Tab>
+          </Tabs>
+        </div>
       </div>
 
-      <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
-        <div className="col">
-            <CustomMap></CustomMap>
-        </div>
-        <div className="col">
-          <div className="card mb-4 rounded-3 shadow-sm">
-            <div className="card-header py-3">
-              <h4 className="my-0 fw-normal">Pro</h4>
-            </div>
-            <div className="card-body">
-              <h1 className="card-title pricing-card-title">
-                $15<small className="text-body-secondary fw-light">/mo</small>
-              </h1>
-              <ul className="list-unstyled mt-3 mb-4">
-                <li>20 users included</li>
-                <li>10 GB of storage</li>
-                <li>Priority email support</li>
-                <li>Help center access</li>
-              </ul>
-              <button type="button" className="w-100 btn btn-lg btn-primary">
-                Get started
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="col">
-          <div className="card mb-4 rounded-3 shadow-sm border-primary">
-            <div className="card-header py-3 text-bg-primary border-primary">
-              <h4 className="my-0 fw-normal">Enterprise</h4>
-            </div>
-            <div className="card-body">
-              <h1 className="card-title pricing-card-title">
-                $29<small className="text-body-secondary fw-light">/mo</small>
-              </h1>
-              <ul className="list-unstyled mt-3 mb-4">
-                <li>30 users included</li>
-                <li>15 GB of storage</li>
-                <li>Phone and email support</li>
-                <li>Help center access</li>
-              </ul>
-              <button type="button" className="w-100 btn btn-lg btn-primary">
-                Contact us
-              </button>
-            </div>
-          </div>
+      <div className="row justify-content-md-center">
+        <div className="col-md-auto map-container">
+          <CustomMap
+            latitude={business.latitude}
+            longitude={business.longitude}
+          ></CustomMap>
         </div>
       </div>
     </div>

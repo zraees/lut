@@ -1,5 +1,7 @@
 // import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 const Hero = () => {
     return <div className="container col-xxl-8">  
     <div className="row flex-lg-row-reverse align-items-center">
@@ -10,8 +12,8 @@ const Hero = () => {
         <h1 className="display-5 fw-bold text-body-emphasis lh-1 mb-3">Discover Local, Support Local</h1>
         <p className="lead">BCD is your go-to guide for finding trusted local businesses. From restaurants to services, explore community-driven reviews, ratings, and personalized recommendations that help you make the best choices—while supporting businesses that make your area unique.</p>
         <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-          <button type="button" className="btn btn-primary btn-lg px-4 me-md-2">Explore Your Community</button> 
-          {/* <Link to="businesses">hi</Link> */}
+        {/* <Link to="businesses"><button type="button" className="btn btn-primary btn-lg px-4 me-md-2">Explore Your Community</button> </Link> */}
+          <Link to="businesses" className="btn btn-primary btn-lg px-4 me-md-2">Explore Your Community</Link>
         </div>
       </div>
     </div>

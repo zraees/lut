@@ -35,12 +35,16 @@ public class BusinessesController : ControllerBase
             x.BusinessId,
             x.Name,
             x.Description,
-            x.Location,
             x.Website,
             x.Address,
             x.Email,
             x.HoursOfOperation,
             x.PhoneNumber,
+            x.IsFeatured,
+            x.Latitude,
+            x.Longitude,
+            x.PostalCode,
+            City = new { x.CityID, x.City?.CityName },
             Category = new
             {
                 x.Category?.CategoryId,
@@ -69,4 +73,41 @@ public class BusinessesController : ControllerBase
         //}
     }
 
+    [HttpGet("GetFeatureBusinesses")]
+    public async Task<IActionResult> GetFeatureBusinesses()
+    {
+        // get all Users through injected-service
+        var data = await _BusinessService.GetFeatureBusinessesAsync().ConfigureAwait(false);
+
+        var result = data.Select(x => new
+        {
+            x.BusinessId,
+            x.Name,
+            x.Description,
+            x.Website,
+            x.Address,
+            x.Email,
+            x.HoursOfOperation,
+            x.PhoneNumber,
+            x.IsFeatured,
+            x.Latitude,
+            x.Longitude,
+            x.PostalCode,
+            City = new { x.CityID, x.City?.CityName },
+            Category = new
+            {
+                x.Category?.CategoryId,
+                x.Category?.Name
+            },
+            BusinessPhotos = x.BusinessPhotos?.Select(p => new
+            {
+                p.businessPhotoId,
+                p.BusinessId,
+                p.Url
+            }
+            ),
+        });
+
+        return Ok(result);
+    }
 }

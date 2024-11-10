@@ -1,6 +1,7 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
+using System.Linq.Expressions;
 using BCD.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,19 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task<IEnumerable<T>> GetAllAsync(params string[] navigationProperties)
     {
         IQueryable<T> query = _dbSet;
+
+        foreach (var navigationProperty in navigationProperties)
+        {
+            query = query.Include(navigationProperty);
+        }
+
+        return await query.ToListAsync();
+    }
+
+    public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate, params string[] navigationProperties)
+    {
+        //return await _dbSet.Where(predicate).ToListAsync();
+        IQueryable<T> query = _dbSet.Where(predicate);
 
         foreach (var navigationProperty in navigationProperties)
         {

@@ -4,6 +4,7 @@ using BCD.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BCD.Infrastructure.Migrations
 {
     [DbContext(typeof(BCDDbContext))]
-    partial class BCDDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241110180422_Alter-Business-4")]
+    partial class AlterBusiness4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,12 +66,12 @@ namespace BCD.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Latitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
+                        .HasPrecision(6)
+                        .HasColumnType("decimal(6,2)");
 
                     b.Property<decimal>("Longitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
+                        .HasPrecision(6)
+                        .HasColumnType("decimal(6,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()

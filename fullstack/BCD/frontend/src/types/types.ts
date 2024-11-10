@@ -2,15 +2,24 @@ export interface IBusiness {
   businessId: number;
   name: string;
   description: string;
-  location: string;
   address: string;
   phoneNumber: string;
   email: string;
   website: string;
   hoursOfOperation: string;
+  isFeatured: boolean,
+  latitude: number,
+  longitude: number,
+  postalCode: number,
+  city: ICity,
   category: ICategory;
   ownerId: number;
   businessPhotos: IBusinessPhoto[];
+}
+
+export interface ICity {
+  cityId: number;
+  cityName: string
 }
 
 export interface ICategory {
@@ -26,7 +35,21 @@ export interface IBusinessPhoto {
   description: string;
 }
 
+export interface IBusinessCardMapProps {
+  latitude: number
+  longitude: number
+}
+
 export interface IBusinessCardProps {
   business: IBusiness;
   redirectToDetail: any;
+}
+
+export interface IBusinessPhotoProp {
+  businessPhotos: IBusinessPhoto[];
+}
+
+
+export interface IBusinessOverviewProp {
+  business: IBusiness;
 }

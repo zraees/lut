@@ -4,6 +4,7 @@ using BCD.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BCD.Infrastructure.Migrations
 {
     [DbContext(typeof(BCDDbContext))]
-    partial class BCDDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241110174327_Alter-Business-2")]
+    partial class AlterBusiness2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +40,7 @@ namespace BCD.Infrastructure.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CityID")
+                    b.Property<int?>("CityID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -48,8 +51,7 @@ namespace BCD.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -59,21 +61,22 @@ namespace BCD.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsFeatured")
+                    b.Property<bool?>("IsFeatured")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("Latitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
+                    b.Property<decimal?>("Latitude")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Longitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Longitude")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
@@ -82,7 +85,7 @@ namespace BCD.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostalCode")
+                    b.Property<int?>("PostalCode")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -354,9 +357,7 @@ namespace BCD.Infrastructure.Migrations
 
                     b.HasOne("BCD.Domain.Entities.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityID");
 
                     b.HasOne("BCD.Domain.Entities.User", "Owner")
                         .WithMany()

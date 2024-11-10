@@ -1,4 +1,4 @@
-import { IBusinessCardProps } from "../../types";
+import { IBusinessCardProps } from "../../types/types";
 import { SlLocationPin } from "react-icons/sl";
 
 const BusinessCard: React.FC<IBusinessCardProps> = ({ business, redirectToDetail }) => {
@@ -27,7 +27,7 @@ const BusinessCard: React.FC<IBusinessCardProps> = ({ business, redirectToDetail
                 type="button"
                 className="btn btn-sm btn-outline-secondary"
               >
-                <SlLocationPin /> {business.location}
+                <SlLocationPin /> {business.address}
                 {/* {business?.category?.name??"category"} */}
               </button>
               {/* <button type="button" className="btn btn-sm btn-outline-secondary">

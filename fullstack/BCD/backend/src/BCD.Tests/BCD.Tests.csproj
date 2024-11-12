@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BCD.API\BCD.API.csproj" />
     <ProjectReference Include="..\BCD.Service\BCD.Service.csproj" />
   </ItemGroup>
 

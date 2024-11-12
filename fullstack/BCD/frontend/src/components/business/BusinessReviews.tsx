@@ -3,8 +3,6 @@ import { IBusinessReviewsProp } from "../../types/types";
 
 const BusinessReviews: React.FC<IBusinessReviewsProp> = ({ businessReviews }) => {
 
-  const reviews = [{id:1, }]; 
-
   return (
     <div className="g-1 py-2">
       <div className="text-center py-2">

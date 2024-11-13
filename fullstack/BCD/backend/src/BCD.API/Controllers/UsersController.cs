@@ -18,6 +18,12 @@ public class UsersController : ControllerBase
         _logger = logger;
     }
 
+    [HttpGet("GetUser")]
+    public IActionResult GetUser()
+    {
+        return Ok("thanks: " + DateTime.Now.ToShortTimeString());
+    }
+
     /// <summary>
     /// first endpoint: to bring all Users data from csv and return to client in json format
     /// </summary>

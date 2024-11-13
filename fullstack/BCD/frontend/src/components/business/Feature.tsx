@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import BusinessService from "../../services/business-service";
 
 const Feature = () => {
-
   const INITIAL: IBusiness[] = [];
   const [businessData, setBusinessData] = useState(INITIAL);
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const Feature = () => {
     const fetchData = async () => {
       try {
         const res: IBusiness[] = await BusinessService.getFeatureBusinesses();
-        setBusinessData(res);
+        setBusinessData(Array.isArray(res) ? res : INITIAL);
         //console.log('data',res);
       } catch (err) {
         console.log("err", err);
@@ -27,21 +26,29 @@ const Feature = () => {
 
   const redirectToDetail = (business: IBusiness) => {
     //console.log('businessId', business.businessId);
-    navigate(`/business-detail/${business.businessId}`, { state: business});
-  }
+    navigate(`/business-detail/${business.businessId}`, { state: business });
+  };
 
-    return <>
-    {businessData.length>0 && <div className="album py-5 bg-body-tertiary">
-        <div className="container">
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {businessData.map((business: IBusiness) => (
-              <div key={business.businessId} className="col">
-                <BusinessCard business={business} redirectToDetail={redirectToDetail}></BusinessCard>
-              </div>
-            ))}
+  return (
+    <>
+      {businessData?.length > 0 && (
+        <div className="album py-5 bg-body-tertiary">
+          <div className="container">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              {businessData?.map((business: IBusiness) => (
+                <div key={business.businessId} className="col">
+                  <BusinessCard
+                    business={business}
+                    redirectToDetail={redirectToDetail}
+                  ></BusinessCard>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>}</>
+      )}
+    </>
+  );
   //   <div className="container px-4 py-5" id="custom-cards">
   //   <h2 className="pb-2 border-bottom">Popular Local Businesses</h2>
 
@@ -110,6 +117,6 @@ const Feature = () => {
   //     </div>
   //   </div>
   // </div>
-}
+};
 
 export default Feature;

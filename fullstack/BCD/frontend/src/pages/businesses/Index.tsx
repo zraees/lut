@@ -6,7 +6,6 @@ import { IBusiness } from "../../types/types";
 import { useNavigate } from "react-router-dom";
 
 export const Index = () => {
-
   const INITIAL: IBusiness[] = [];
   const [businessData, setBusinessData] = useState(INITIAL);
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ export const Index = () => {
     const fetchData = async () => {
       try {
         const res: IBusiness[] = await BusinessService.getBusinesses();
-        setBusinessData(res);
+        setBusinessData(Array.isArray(res) ? res : INITIAL);
         //console.log('data',res);
       } catch (err) {
         console.log("err", err);
@@ -28,24 +27,31 @@ export const Index = () => {
 
   const redirectToDetail = (business: IBusiness) => {
     //console.log('businessId', business.businessId);
-    navigate(`/business-detail/${business.businessId}`, { state: business});
-  }
+    navigate(`/business-detail/${business.businessId}`, { state: business });
+  };
 
   return (
     <main className="business-bg">
       <SearchCriteria />
 
-      {businessData.length>0 && <div className="album py-5 bg-body-tertiary">
-        <div className="container">
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {businessData.map((business: IBusiness) => (
-              <div key={business.businessId} className="col">
-                <BusinessCard business={business} redirectToDetail={redirectToDetail}></BusinessCard>
-              </div>
-            ))}
+      {businessData?.length <= 0 && <h2 className="text text-info">No data available !</h2>}
+
+      {businessData?.length > 0 && (
+        <div className="album py-5 bg-body-tertiary">
+          <div className="container">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              {businessData?.map((business: IBusiness) => (
+                <div key={business.businessId} className="col">
+                  <BusinessCard
+                    business={business}
+                    redirectToDetail={redirectToDetail}
+                  ></BusinessCard>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>}
+      )}
     </main>
   );
 };

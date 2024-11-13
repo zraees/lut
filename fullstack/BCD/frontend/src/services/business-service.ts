@@ -1,14 +1,15 @@
 import axios from "axios";
 import { IBusiness } from "../types/types";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const BusinessService = {
     getBusinesses : async () : Promise<IBusiness[]> => {
-        const resp = await axios.get<IBusiness[]>("https://localhost:44323/api/Businesses/GetAllBusinesses");
+        const resp = await axios.get<IBusiness[]>(`${backendUrl}Businesses/GetAllBusinesses`);
         return resp.data;
     }, 
     
     getFeatureBusinesses : async () : Promise<IBusiness[]> => {
-        const resp = await axios.get<IBusiness[]>("https://localhost:44323/api/Businesses/GetFeatureBusinesses");
+        const resp = await axios.get<IBusiness[]>(`${backendUrl}Businesses/GetFeatureBusinesses`);
         return resp.data;
     } 
 }

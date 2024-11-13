@@ -38,7 +38,7 @@ public class GlobalExceptionHandler : IExceptionHandler
         var problemDetails = new ProblemDetails
         {
             Status = StatusCodes.Status500InternalServerError,
-            Title = "Server error"
+            Title = "Server error " + exception.Message + " Inner Ex: "  + exception.InnerException?.Message ?? ""
         };
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;

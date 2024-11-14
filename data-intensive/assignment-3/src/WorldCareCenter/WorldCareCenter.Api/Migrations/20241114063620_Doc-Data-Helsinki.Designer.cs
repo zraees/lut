@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorldCareCenter.Api.Models;
 
@@ -10,9 +11,11 @@ using WorldCareCenter.Api.Models;
 namespace WorldCareCenter.Api.Migrations
 {
     [DbContext(typeof(LahtiDBContext))]
-    partial class LahtiDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241114063620_Doc-Data-Helsinki")]
+    partial class DocDataHelsinki
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -88,62 +91,6 @@ namespace WorldCareCenter.Api.Migrations
                             Email = "joni.bob@email.com",
                             Name = "Joni Bob",
                             Specialty = "Ophthalmologist"
-                        },
-                        new
-                        {
-                            DoctorID = 8,
-                            Email = "sarah.johnson@example.com",
-                            Name = "Sarah Johnson",
-                            Specialty = "Pediatrician"
-                        },
-                        new
-                        {
-                            DoctorID = 9,
-                            Email = "michael.smith@example.com",
-                            Name = "Michael Smith",
-                            Specialty = "Cardiologist"
-                        },
-                        new
-                        {
-                            DoctorID = 10,
-                            Email = "emily.davis@example.com",
-                            Name = "Emily Davis",
-                            Specialty = "Dermatologist"
-                        },
-                        new
-                        {
-                            DoctorID = 11,
-                            Email = "david.brown@example.com",
-                            Name = "David Brown",
-                            Specialty = "Orthopedic Surgeon"
-                        },
-                        new
-                        {
-                            DoctorID = 12,
-                            Email = "jessica.wilson@example.com",
-                            Name = "Jessica Wilson",
-                            Specialty = "Neurologist"
-                        },
-                        new
-                        {
-                            DoctorID = 13,
-                            Email = "laura.martinez@example.com",
-                            Name = "Laura Martinez",
-                            Specialty = "General Practitioner"
-                        },
-                        new
-                        {
-                            DoctorID = 14,
-                            Email = "daniel.anderson@example.com",
-                            Name = "Daniel Anderson",
-                            Specialty = "Endocrinologist"
-                        },
-                        new
-                        {
-                            DoctorID = 15,
-                            Email = "olivia.thomas@example.com",
-                            Name = "Olivia Thomas",
-                            Specialty = "Gynecologist"
                         });
                 });
 

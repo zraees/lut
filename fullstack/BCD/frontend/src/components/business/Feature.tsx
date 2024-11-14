@@ -13,6 +13,7 @@ const Feature = () => {
     const fetchData = async () => {
       try {
         const res: IBusiness[] = await BusinessService.getFeatureBusinesses();
+        console.log('res', res);
         setBusinessData(Array.isArray(res) ? res : INITIAL);
         //console.log('data',res);
       } catch (err) {

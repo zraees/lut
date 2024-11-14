@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorldCareCenter.Api.Models;
 
@@ -10,9 +11,11 @@ using WorldCareCenter.Api.Models;
 namespace WorldCareCenter.Api.Migrations
 {
     [DbContext(typeof(LahtiDBContext))]
-    partial class LahtiDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241114063827_Doc-Data-Lah")]
+    partial class DocDataLah
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");

@@ -33,6 +33,15 @@ public class TurkuDBContext: DbContext
         modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 6, Name = "Tom Hood", Email = "tom.hood@email.com", Specialty = "Gynecologist" });
         modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 7, Name = "Joni Bob", Email = "joni.bob@email.com", Specialty = "Ophthalmologist" });
 
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 8, Name = "Sarah Johnson", Email = "sarah.johnson@example.com", Specialty = "Pediatrician" });
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 9, Name = "Michael Smith", Email = "michael.smith@example.com", Specialty = "Cardiologist" });
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 10, Name = "Emily Davis", Email = "emily.davis@example.com", Specialty = "Dermatologist" });
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 11, Name = "David Brown", Email = "david.brown@example.com", Specialty = "Orthopedic Surgeon" });
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 12, Name = "Jessica Wilson", Email = "jessica.wilson@example.com", Specialty = "Neurologist" });
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 13, Name = "Laura Martinez", Email = "laura.martinez@example.com", Specialty = "General Practitioner" });
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 14, Name = "Daniel Anderson", Email = "daniel.anderson@example.com", Specialty = "Endocrinologist" });
+        modelBuilder.Entity<Doctor>().HasData(new Doctor() { DoctorID = 15, Name = "Olivia Thomas", Email = "olivia.thomas@example.com", Specialty = "Gynecologist" });
+
         modelBuilder.Entity<Patient>().HasData(new Patient() { PatientID = 1, PatientFileNo = "123-422", PatientName = "Emily Johnson", Gender = "Male", Email = "emily.johnson@example.com" });
         modelBuilder.Entity<Patient>().HasData(new Patient() { PatientID = 2, PatientFileNo = "333-467", PatientName = "Michael Brown", Gender = "Male", Email = "michael.brown@example.com" });
         modelBuilder.Entity<Patient>().HasData(new Patient() { PatientID = 3, PatientFileNo = "433-454", PatientName = "Sarah Davis", Gender = "Female", Email = "sarah.davis@example.com" });

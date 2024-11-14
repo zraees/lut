@@ -2,17 +2,20 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorldCareCenter.Api.Models;
 
 #nullable disable
 
-namespace WorldCareCenter.Api.Migrations
+namespace WorldCareCenter.Api.Migrations.HelsinkiDB
 {
-    [DbContext(typeof(LahtiDBContext))]
-    partial class LahtiDBContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(HelsinkiDBContext))]
+    [Migration("20241114061959_Doc-Data-Helsinki")]
+    partial class DocDataHelsinki
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -170,36 +173,36 @@ namespace WorldCareCenter.Api.Migrations
                         new
                         {
                             InvoiceID = 1,
-                            Date = new DateOnly(2023, 1, 3),
+                            Date = new DateOnly(2024, 1, 26),
                             InvoiceAmount = 180m,
                             PatientID = 1
                         },
                         new
                         {
                             InvoiceID = 2,
-                            Date = new DateOnly(2024, 2, 13),
-                            InvoiceAmount = 500m,
-                            PatientID = 2
+                            Date = new DateOnly(2024, 2, 15),
+                            InvoiceAmount = 80m,
+                            PatientID = 5
                         },
                         new
                         {
                             InvoiceID = 3,
-                            Date = new DateOnly(2024, 6, 2),
-                            InvoiceAmount = 240m,
-                            PatientID = 3
+                            Date = new DateOnly(2024, 6, 11),
+                            InvoiceAmount = 139m,
+                            PatientID = 2
                         },
                         new
                         {
                             InvoiceID = 4,
-                            Date = new DateOnly(2024, 7, 16),
-                            InvoiceAmount = 620m,
+                            Date = new DateOnly(2024, 11, 16),
+                            InvoiceAmount = 115m,
                             PatientID = 4
                         },
                         new
                         {
                             InvoiceID = 5,
-                            Date = new DateOnly(2024, 5, 14),
-                            InvoiceAmount = 146m,
+                            Date = new DateOnly(2023, 12, 4),
+                            InvoiceAmount = 941m,
                             PatientID = 5
                         });
                 });
@@ -225,50 +228,50 @@ namespace WorldCareCenter.Api.Migrations
                         new
                         {
                             InvoiceDetailId = 1,
-                            InvoiceId = 1,
-                            InvoiceLineItem = "Three Item"
+                            InvoiceId = 4,
+                            InvoiceLineItem = "First record"
                         },
                         new
                         {
                             InvoiceDetailId = 2,
-                            InvoiceId = 1,
-                            InvoiceLineItem = "Mid Item"
+                            InvoiceId = 2,
+                            InvoiceLineItem = "Second record"
                         },
                         new
                         {
                             InvoiceDetailId = 3,
                             InvoiceId = 2,
-                            InvoiceLineItem = "Top Item"
+                            InvoiceLineItem = "this is medi detail"
                         },
                         new
                         {
                             InvoiceDetailId = 4,
-                            InvoiceId = 3,
-                            InvoiceLineItem = "Medicine Item"
+                            InvoiceId = 5,
+                            InvoiceLineItem = "Medicine receipt"
                         },
                         new
                         {
                             InvoiceDetailId = 5,
                             InvoiceId = 4,
-                            InvoiceLineItem = "Item 1"
+                            InvoiceLineItem = "Planning data"
                         },
                         new
                         {
                             InvoiceDetailId = 6,
-                            InvoiceId = 5,
-                            InvoiceLineItem = "Planning Item"
+                            InvoiceId = 2,
+                            InvoiceLineItem = "available list"
                         },
                         new
                         {
                             InvoiceDetailId = 7,
-                            InvoiceId = 2,
-                            InvoiceLineItem = "Two 2 Item"
+                            InvoiceId = 3,
+                            InvoiceLineItem = "doctor details"
                         },
                         new
                         {
                             InvoiceDetailId = 8,
-                            InvoiceId = 3,
-                            InvoiceLineItem = "13th Item"
+                            InvoiceId = 1,
+                            InvoiceLineItem = "patient record"
                         });
                 });
 
@@ -302,42 +305,42 @@ namespace WorldCareCenter.Api.Migrations
                         new
                         {
                             PatientID = 1,
-                            Email = "joseph.hall@example.com",
+                            Email = "robert.lee@example.com",
                             Gender = "Male",
-                            PatientFileNo = "951-522",
-                            PatientName = "Joseph Hall"
+                            PatientFileNo = "513-001",
+                            PatientName = "Robert Lee"
                         },
                         new
                         {
                             PatientID = 2,
-                            Email = "thomas.scott@example.com",
+                            Email = "david.wilson@example.com",
                             Gender = "Male",
-                            PatientFileNo = "951-497",
-                            PatientName = "Thomas Scott"
+                            PatientFileNo = "633-957",
+                            PatientName = "David Wilson"
                         },
                         new
                         {
                             PatientID = 3,
-                            Email = "barbara.green@example.com",
+                            Email = "margaret.young@example.com",
                             Gender = "Female",
-                            PatientFileNo = "147-404",
-                            PatientName = "Barbara Green"
+                            PatientFileNo = "413-104",
+                            PatientName = "Margaret Young"
                         },
                         new
                         {
                             PatientID = 4,
-                            Email = "jennifer.white@example.com",
-                            Gender = "Female",
-                            PatientFileNo = "741-314",
-                            PatientName = "Jennifer White"
+                            Email = "charles.king@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "952-204",
+                            PatientName = "Charles King"
                         },
                         new
                         {
                             PatientID = 5,
-                            Email = "jessica.taylor@example.com",
-                            Gender = "Female",
-                            PatientFileNo = "256-024",
-                            PatientName = "Jessica Taylor"
+                            Email = "thomas.scott@example.com",
+                            Gender = "Male",
+                            PatientFileNo = "145-304",
+                            PatientName = "Thomas Scott"
                         });
                 });
 #pragma warning restore 612, 618

@@ -7,5 +7,10 @@ namespace BCD.Domain.Interfaces.Services;
 public interface IUserService
 {
     Task<IEnumerable<User>> GetUsersAsync();
+
+    Task<User> IsAuthenticated(string email, string pwd);
+
+    Task<User> GetUserByIdAsync(int userId);
+
     //Task<int> CreateUserAsync(User User);
 }

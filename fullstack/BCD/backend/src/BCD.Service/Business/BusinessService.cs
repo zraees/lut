@@ -21,7 +21,7 @@ public class BusinessService : IBusinessService
 
     public async Task<IEnumerable<Domain.Entities.Business>> GetFeatureBusinessesAsync()
     {
-        return await _unitOfWork.Businesses.GetAsync(x=>x.IsFeatured, "BusinessPhotos", "Category", "City", "BusinessReviews").ConfigureAwait(false);
+        return await _unitOfWork.Businesses.GetAsync(x => x.IsFeatured, "BusinessPhotos", "Category", "City", "BusinessReviews").ConfigureAwait(false);
     }
 
 }

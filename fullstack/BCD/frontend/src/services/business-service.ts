@@ -10,7 +10,7 @@ const BusinessService = {
     
     getFeatureBusinesses : async () : Promise<IBusiness[]> => {
         const resp = await axios.get<IBusiness[]>(`${backendUrl}Businesses/GetFeatureBusinesses`);
-        console.log('url', `${backendUrl}Businesses/GetFeatureBusinesses`)
+        //console.log('url', `${backendUrl}Businesses/GetFeatureBusinesses`)
         return resp.data;
     } 
 }

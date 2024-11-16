@@ -6,4 +6,5 @@ using BCD.Domain.Entities;
 namespace BCD.Domain.Interfaces.Repositories;
 public interface IUserRepository : IGenericRepository<User>
 {
+    Task<User> IsAuthenticated(string email, string pwd);
 }

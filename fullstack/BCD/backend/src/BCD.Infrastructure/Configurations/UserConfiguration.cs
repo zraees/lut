@@ -17,5 +17,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.Email)
             .IsRequired()
             .HasMaxLength(250);
+
+        builder.Ignore(x => x.Token);
     }
 }

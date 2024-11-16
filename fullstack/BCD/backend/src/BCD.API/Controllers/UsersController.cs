@@ -9,13 +9,27 @@ namespace BCD.API.Controllers;
 [ApiController]
 public class UsersController : ControllerBase
 {
-    private readonly IUserService _UserService;
+    private readonly IUserService _userService;
     private readonly ILogger<UsersController> _logger;
 
-    public UsersController(IUserService UserService, ILogger<UsersController> logger)
+    public UsersController(IUserService userService, ILogger<UsersController> logger)
     {
-        _UserService = UserService;
+        _userService = userService;
         _logger = logger;
+    }
+
+    [HttpPost("Authenticate")]
+    public async Task<IActionResult> Authenticate(string email, string pwd)
+    {
+        var user =await _userService.IsAuthenticated(email, pwd).ConfigureAwait(false);
+        if (user == null)
+        {
+            return BadRequest("Invalid user and password!");
+        }
+        else
+        {
+            return Ok(user);
+        }
     }
 
     [HttpGet("GetUser")]
@@ -32,7 +46,7 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> GetAllUsers()
     {
         // get all Users through injected-service
-        var Users = await _UserService.GetUsersAsync().ConfigureAwait(false);
+        var Users = await _userService.GetUsersAsync().ConfigureAwait(false);
         return Ok(Users);
 
         //// if return with sucess, show User data to client other wise badreqeust with error message.

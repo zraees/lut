@@ -5,10 +5,10 @@ on:
     - main
 env:
   AZURE_WEBAPP_NAME: bcdapi
-  AZURE_WEBAPP_PACKAGE_PATH: BCD.API\publish
+  AZURE_WEBAPP_PACKAGE_PATH: BCD.API/publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
-  WORKING_DIRECTORY: BCD.API
+  WORKING_DIRECTORY: ..\fullstack\BCD\backend\src\BCD.API
 jobs:
   build:
     runs-on: windows-latest

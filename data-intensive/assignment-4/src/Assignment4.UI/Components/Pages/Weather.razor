@@ -1,115 +1,76 @@
 ﻿@page "/weather"
-@using WorldCareCenter.Api.DTOs
-@using WorldCareCenter.Api.Entities
+@using Assignment4.Api.DTOs
+@using Assignment4.Api.Entities
 @inject HttpClient Http
 @rendermode InteractiveServer
 
+<PageTitle>Extended Families</PageTitle>
 
-<PageTitle>World Care Center</PageTitle>
-
-@* <h1>Finland Care Center</h1>
- *@
-<h4>
-    <select @onchange="OnLocationChange">
-        <option value="Helsinki">Helsinki</option>
-        <option value="Lahti">Lahti</option>
-        <option value="Turku">Turku</option>
-    </select>
-</h4>
 
 <div class="row">
-    <div class="col-md-6">
-        <h5>Doctors Data (Replicated in all locations)</h5>
+    <div class="col-md-12">
+        <h5>Families Data (From SQL and NoSQL Databases)</h5>
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Speciality</th>
+                    <th>Family Name</th>
+                    <th>Is Registered</th>
+                    <th>Parents</th>
+                    <th>Children</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var doctor in completeDatasetDTO.Doctors)
+                @foreach (var familyObj in (Http.GetFromJsonAsync<List<Family>>($"/api/CombineData/GetSqlNoSqlData").Result))
                 {
                     <tr>
-                        <td>@doctor.DoctorID</td>
-                        <td>@doctor.Name</td>
-                        <td>@doctor.Email</td>
-                        <td>@doctor.Specialty</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <h5>Patient Data (location specific data / data fragmentation)</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Patient File No</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var doctor in completeDatasetDTO.Patients)
-                {
-                    <tr>
-                        <td>@doctor.PatientFileNo</td>
-                        <td>@doctor.PatientName</td>
-                        <td>@doctor.Gender</td>
-                        <td>@doctor.Email</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <h5>Invoice Data</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Date</th>
-                    <th>Invoice Amount</th>
-                    <th>Patient ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var doctor in completeDatasetDTO.Invoices)
-                {
-                    <tr>
-                        <td>@doctor.InvoiceID</td>
-                        <td>@doctor.Date</td>
-                        <td>@doctor.InvoiceAmount</td>
-                        <td>@doctor.PatientID</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <h5>Invoice Detail Data</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Invoice Detail ID</th>
-                    <th>Invoice ID</th>
-                    <th>Line Item</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var doctor in completeDatasetDTO.InvoiceDetails)
-                {
-                    <tr>
-                        <td>@doctor.InvoiceDetailId</td>
-                        <td>@doctor.InvoiceId</td>
-                        <td>@doctor.InvoiceLineItem</td>
+                        <td>@familyObj.Id</td>
+                        <td>@familyObj.LastName</td>
+                        <td>@familyObj.IsRegistered</td>
+                        @* parents *@
+                        <td>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Family Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var parentObj in familyObj.Parents)
+                                    {
+                                        <tr>
+                                            <td>@parentObj.FirstName</td>
+                                            <td>@parentObj.FamilyName</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                        @* Children *@
+                        <td>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Family Name</th>
+                                        <th>Gender</th>
+                                        <th>Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var childObj in familyObj.Children)
+                                    {
+                                        <tr>
+                                            <td>@childObj.FirstName</td>
+                                            <td>@childObj.FamilyName</td>
+                                            <td>@childObj.Gender</td>
+                                            <td>@childObj.Grade</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -118,28 +79,30 @@
 </div>
 
 @code {
-    private CompleteDatasetDTO completeDatasetDTO = new ();
+    // private List<Family> completeDatasetDTO = new();
 
-    protected override async Task OnInitializedAsync()
-    {
-        await LoadData("helsinki");
-    }
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     completeDatasetDTO = new List<Family>();
+    //     completeDatasetDTO = await Http.GetFromJsonAsync<List<Family>>($"/api/CombineData/GetSqlNoSqlData").ConfigureAwait(false);
+    //     //await LoadData("Combine");
+    // }
 
-    private async Task OnLocationChange(ChangeEventArgs e)
-    {
-        await LoadData(e.Value.ToString());
-    }
+    // private async Task OnLocationChange(ChangeEventArgs e)
+    // {
+    //     await LoadData(e.Value.ToString());
+    // }
 
-    private async Task LoadData(string location)
-    {
-        //Console.WriteLine("Load data");
+    // private async Task LoadData(string location)
+    // {
+    //     //Console.WriteLine("Load data");
 
-        completeDatasetDTO = new CompleteDatasetDTO();
+    //     completeDatasetDTO = new List<Family>();
 
-        //Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
+    //     //Simulate asynchronous loading to demonstrate streaming rendering
+    //     await Task.Delay(500);
 
-        completeDatasetDTO = await Http.GetFromJsonAsync<CompleteDatasetDTO>($"/api/Data/" + location).ConfigureAwait(false);
-    }
+    //     completeDatasetDTO = await Http.GetFromJsonAsync<List<Family>>($"/api/CombineData/GetSqlNoSqlData").ConfigureAwait(false);
+    // }
 
 }

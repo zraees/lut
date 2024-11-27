@@ -44,7 +44,7 @@ namespace Assignment4.Api.Controllers
         {
             try
             {
-                var family = await _Assignment4DBContext.FamiliesSql.FirstOrDefaultAsync(x=>x.Id==id).ConfigureAwait(false);
+                var family = await _Assignment4DBContext.FamiliesSql.FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
                 if (family != null)
                 {
                     family.IsRegistered = registration;
@@ -82,7 +82,7 @@ namespace Assignment4.Api.Controllers
                         _Assignment4DBContext.ChildrenSql.RemoveRange(children);
                     }
                     #endregion
-                    
+
                     _Assignment4DBContext.FamiliesSql.Remove(family);
                     await _Assignment4DBContext.SaveChangesAsync().ConfigureAwait(false);
                 }
@@ -94,24 +94,5 @@ namespace Assignment4.Api.Controllers
                 return BadRequest("Error while creating Sql item");
             }
         }
-
-        //[HttpGet("{location}")]
-        //public async Task<IActionResult> GetDoctors(string location)
-        //{
-        //    CompleteDatasetDTO completeDatasetDTO = new();
-        //    switch (location.ToLower())
-        //    {
-        //        case "helsinki":
-        //            completeDatasetDTO.Doctors = await _Assignment4DBContext.Doctors.ToListAsync();
-        //            completeDatasetDTO.Patients = await _Assignment4DBContext.Patients.ToListAsync();
-        //            completeDatasetDTO.Invoices = await _Assignment4DBContext.Invoices.ToListAsync();
-        //            completeDatasetDTO.InvoiceDetails = await _Assignment4DBContext.InvoiceDetails.ToListAsync();
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    return Ok(completeDatasetDTO);
-        //}
     }
 }

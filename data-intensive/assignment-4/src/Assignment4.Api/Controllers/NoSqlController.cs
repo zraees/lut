@@ -61,24 +61,5 @@ namespace Assignment4.Api.Controllers
                 return BadRequest("Error while deleting nosql item");
             }
         }
-
-        //[HttpGet("{location}")]
-        //public async Task<IActionResult> GetDoctors(string location)
-        //{
-        //    CompleteDatasetDTO completeDatasetDTO = new();
-        //    switch (location.ToLower())
-        //    {
-        //        case "helsinki":
-        //            completeDatasetDTO.Doctors = await _Assignment4DBContext.Doctors.ToListAsync();
-        //            completeDatasetDTO.Patients = await _Assignment4DBContext.Patients.ToListAsync();
-        //            completeDatasetDTO.Invoices = await _Assignment4DBContext.Invoices.ToListAsync();
-        //            completeDatasetDTO.InvoiceDetails = await _Assignment4DBContext.InvoiceDetails.ToListAsync();
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    return Ok(completeDatasetDTO);
-        //}
     }
 }

@@ -12,7 +12,6 @@ public class FamilyNoSql
     public string LastName { get; set; }
     public ParentNoSql[] Parents { get; set; }
     public ChildNoSql[] Children { get; set; }
-    public AddressNoSql Address { get; set; }
     public bool IsRegistered { get; set; }
     public override string ToString()
     {
@@ -32,17 +31,4 @@ public class ChildNoSql
     public string FirstName { get; set; }
     public string Gender { get; set; }
     public int Grade { get; set; }
-    public PetNoSql[] Pets { get; set; }
-}
-
-public class PetNoSql
-{
-    public string GivenName { get; set; }
-}
-
-public class AddressNoSql
-{
-    public string State { get; set; }
-    public string County { get; set; }
-    public string City { get; set; }
 }

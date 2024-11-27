@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Assignment4.Api.DTOs;
-using Assignment4.Api.Models;
-using Assignment4.Api.Entities;
+﻿using Assignment4.Api.Entities;
 using Assignment4.Api.Helper;
+using Assignment4.Api.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Assignment4.Api.Controllers
 {
@@ -11,11 +9,8 @@ namespace Assignment4.Api.Controllers
     [ApiController]
     public class NoSqlController : ControllerBase
     {
-        private readonly HelsinkiDBContext _helsinkiDBContext;
-
-        public NoSqlController(HelsinkiDBContext helsinkiDBContext)
+        public NoSqlController()
         {
-            this._helsinkiDBContext = helsinkiDBContext;
         }
 
         [HttpGet("GetAll")]
@@ -28,7 +23,7 @@ namespace Assignment4.Api.Controllers
         [HttpPost("AddFamilyItem")]
         public async Task<IActionResult> CreateFamilyNoSql(FamilyNoSql family)
         {
-            var id =  await HelperNoSql.CreateAsync(family).ConfigureAwait(false);
+            var id = await HelperNoSql.CreateAsync(family).ConfigureAwait(false);
             if (id.Length > 0)
             {
                 return Ok();
@@ -74,10 +69,10 @@ namespace Assignment4.Api.Controllers
         //    switch (location.ToLower())
         //    {
         //        case "helsinki":
-        //            completeDatasetDTO.Doctors = await _helsinkiDBContext.Doctors.ToListAsync();
-        //            completeDatasetDTO.Patients = await _helsinkiDBContext.Patients.ToListAsync();
-        //            completeDatasetDTO.Invoices = await _helsinkiDBContext.Invoices.ToListAsync();
-        //            completeDatasetDTO.InvoiceDetails = await _helsinkiDBContext.InvoiceDetails.ToListAsync();
+        //            completeDatasetDTO.Doctors = await _Assignment4DBContext.Doctors.ToListAsync();
+        //            completeDatasetDTO.Patients = await _Assignment4DBContext.Patients.ToListAsync();
+        //            completeDatasetDTO.Invoices = await _Assignment4DBContext.Invoices.ToListAsync();
+        //            completeDatasetDTO.InvoiceDetails = await _Assignment4DBContext.InvoiceDetails.ToListAsync();
         //            break;
         //        default:
         //            break;

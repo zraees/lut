@@ -4,9 +4,9 @@ using Assignment4.Api.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<HelsinkiDBContext>(opt =>
+builder.Services.AddDbContext<Assignment4DBContext>(opt =>
 {
-    opt.UseSqlite(builder.Configuration.GetConnectionString("HelsinkiDBConn") ?? throw new InvalidOperationException("Connectionstring 'HelsinkiDBConn' not found!"));
+    opt.UseSqlite(builder.Configuration.GetConnectionString("Assignment4DBConn") ?? throw new InvalidOperationException("Connectionstring 'Assignment4DBConn' not found!"));
 });
 
 builder.Services.AddControllers();

@@ -5,7 +5,7 @@
 namespace Assignment4.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitializeDB : Migration
+    public partial class InitializeDBNew : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,28 +24,6 @@ namespace Assignment4.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AddressesSql",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FamilyId = table.Column<string>(type: "TEXT", nullable: false),
-                    State = table.Column<string>(type: "TEXT", nullable: false),
-                    County = table.Column<string>(type: "TEXT", nullable: false),
-                    City = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AddressesSql", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AddressesSql_FamiliesSql_FamilyId",
-                        column: x => x.FamilyId,
-                        principalTable: "FamiliesSql",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ChildrenSql",
                 columns: table => new
                 {
@@ -54,17 +32,17 @@ namespace Assignment4.Api.Migrations
                     FamilyId = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     Gender = table.Column<string>(type: "TEXT", nullable: false),
-                    Grade = table.Column<int>(type: "INTEGER", nullable: false)
+                    Grade = table.Column<int>(type: "INTEGER", nullable: false),
+                    FamilySqlId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ChildrenSql", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChildrenSql_FamiliesSql_FamilyId",
-                        column: x => x.FamilyId,
+                        name: "FK_ChildrenSql_FamiliesSql_FamilySqlId",
+                        column: x => x.FamilySqlId,
                         principalTable: "FamiliesSql",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -73,42 +51,33 @@ namespace Assignment4.Api.Migrations
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     FamilyId = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false)
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    FamilySqlId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ParentsSql", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ParentsSql_FamiliesSql_FamilyId",
-                        column: x => x.FamilyId,
+                        name: "FK_ParentsSql_FamiliesSql_FamilySqlId",
+                        column: x => x.FamilySqlId,
                         principalTable: "FamiliesSql",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddressesSql_FamilyId",
-                table: "AddressesSql",
-                column: "FamilyId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChildrenSql_FamilyId",
+                name: "IX_ChildrenSql_FamilySqlId",
                 table: "ChildrenSql",
-                column: "FamilyId");
+                column: "FamilySqlId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParentsSql_FamilyId",
+                name: "IX_ParentsSql_FamilySqlId",
                 table: "ParentsSql",
-                column: "FamilyId");
+                column: "FamilySqlId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AddressesSql");
-
             migrationBuilder.DropTable(
                 name: "ChildrenSql");
 

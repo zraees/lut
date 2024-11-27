@@ -1,0 +1,116 @@
+//============================== SQL Sample Data ==========================================
+//------------------ 1 ----------------
+[
+  {
+    "id": "sql1",
+    "lastName": "Peter",
+    "isRegistered": false,
+    "parents": [
+      {
+        "id": "p1",
+        "familyId": "Peter",
+        "firstName": "John"
+      }
+    ],
+    "children": [
+      {
+        "id": 1,
+        "familyId": "Peter",
+        "firstName": "Tom",
+        "gender": "Male",
+        "grade": 3
+      },
+      {
+        "id": 2,
+        "familyId": "Peter",
+        "firstName": "Jerry",
+        "gender": "Female",
+        "grade": 5
+      }
+    ]
+  },
+  //------------------ 2 ----------------
+  {
+    "id": "sql2",
+    "lastName": "Elisa",
+    "isRegistered": true,
+    "parents": [
+      {
+        "id": "ep1",
+        "familyId": "Elisa",
+        "firstName": "Goody"
+      },
+      {
+        "id": "ep2",
+        "familyId": "Elisa",
+        "firstName": "Moody"
+      }
+    ],
+    "children": [
+      {
+        "id": 3,
+        "familyId": "Elisa",
+        "firstName": "Packky",
+        "gender": "Male",
+        "grade": 1
+      }
+    ]
+  },
+
+  //============================== NoSQL Sample Data ==========================================
+  //------------------ 1 ----------------
+  {
+    "id": "noSql1",
+    "lastName": "Candy",
+    "parents": [
+      {
+        "familyName": "Candy",
+        "firstName": "Kylle"
+      },
+      {
+        "familyName": "Candy",
+        "firstName": "Mille"
+      }
+    ],
+    "children": [
+      {
+        "familyName": "Candy",
+        "firstName": "Ken",
+        "gender": "Male",
+        "grade": 1
+      }
+    ],
+    "isRegistered": false
+  },
+
+  //------------------ 2 ----------------
+  {
+    "id": "noSql2",
+    "lastName": "Smith",
+    "parents": [
+      {
+        "familyName": "Smith",
+        "firstName": "John"
+      },
+      {
+        "familyName": "Smith",
+        "firstName": "Mili"
+      }
+    ],
+    "children": [
+      {
+        "familyName": "Smith",
+        "firstName": "Rio",
+        "gender": "Male",
+        "grade": 2
+      },
+      {
+        "familyName": "Smith",
+        "firstName": "Moi",
+        "gender": "Female",
+        "grade": 4
+      }
+    ],
+    "isRegistered": true
+  }
+]

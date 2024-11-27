@@ -10,41 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment4.Api.Migrations
 {
     [DbContext(typeof(Assignment4DBContext))]
-    [Migration("20241127193239_InitializeDB-2")]
-    partial class InitializeDB2
+    [Migration("20241127214956_InitializeDB-New")]
+    partial class InitializeDBNew
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
-
-            modelBuilder.Entity("Assignment4.Api.Entities.AddressSql", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("County")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FamilyId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AddressesSql");
-                });
 
             modelBuilder.Entity("Assignment4.Api.Entities.ChildSql", b =>
                 {
@@ -82,9 +55,6 @@ namespace Assignment4.Api.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("IsRegistered")
                         .HasColumnType("INTEGER");
 
@@ -93,8 +63,6 @@ namespace Assignment4.Api.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("FamiliesSql");
                 });
@@ -127,17 +95,6 @@ namespace Assignment4.Api.Migrations
                     b.HasOne("Assignment4.Api.Entities.FamilySql", null)
                         .WithMany("Children")
                         .HasForeignKey("FamilySqlId");
-                });
-
-            modelBuilder.Entity("Assignment4.Api.Entities.FamilySql", b =>
-                {
-                    b.HasOne("Assignment4.Api.Entities.AddressSql", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Assignment4.Api.Entities.ParentSql", b =>

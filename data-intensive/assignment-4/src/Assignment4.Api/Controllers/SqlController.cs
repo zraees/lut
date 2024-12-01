@@ -68,7 +68,7 @@ namespace Assignment4.Api.Controllers
                 if (family != null)
                 {
                     #region parents
-                    var parents = await _Assignment4DBContext.ParentsSql.Where(x => x.FamilyId == id).ToListAsync().ConfigureAwait(false);
+                    var parents = await _Assignment4DBContext.ParentsSql.Where(x => x.FamilyId == family.LastName).ToListAsync().ConfigureAwait(false);
                     if (parents.Count > 0)
                     {
                         _Assignment4DBContext.ParentsSql.RemoveRange(parents);
@@ -76,7 +76,7 @@ namespace Assignment4.Api.Controllers
                     #endregion
 
                     #region chilren
-                    var children = await _Assignment4DBContext.ChildrenSql.Where(x => x.FamilyId == id).ToListAsync().ConfigureAwait(false);
+                    var children = await _Assignment4DBContext.ChildrenSql.Where(x => x.FamilyId == family.LastName).ToListAsync().ConfigureAwait(false);
                     if (children.Count > 0)
                     {
                         _Assignment4DBContext.ChildrenSql.RemoveRange(children);

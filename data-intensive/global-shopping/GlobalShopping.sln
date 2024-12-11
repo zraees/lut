@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalShopping", "GlobalShopping\GlobalShopping.csproj", "{07FECBF9-19B1-472D-A07D-285A508F84BB}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BD90EE22-4102-453C-97CB-DA3BB1DB5130}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07FECBF9-19B1-472D-A07D-285A508F84BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07FECBF9-19B1-472D-A07D-285A508F84BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07FECBF9-19B1-472D-A07D-285A508F84BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07FECBF9-19B1-472D-A07D-285A508F84BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD90EE22-4102-453C-97CB-DA3BB1DB5130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD90EE22-4102-453C-97CB-DA3BB1DB5130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD90EE22-4102-453C-97CB-DA3BB1DB5130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD90EE22-4102-453C-97CB-DA3BB1DB5130}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4704EDFB-811D-404F-A2DC-D588A6BEA035}
+	EndGlobalSection
+EndGlobal

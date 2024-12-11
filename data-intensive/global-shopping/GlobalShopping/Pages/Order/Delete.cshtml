@@ -1,0 +1,69 @@
+﻿@page
+@model GlobalShopping.Pages.Order.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<p class="h1 text-center">Delete order</p>
+
+<br />
+
+<p>
+    <a class="btn btn-outline-primary" asp-page="Index">< Order list</a>
+</p>
+<div class="container border rounded-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group mb-3">
+                <label asp-for="Order.OrderDate" class="control-label"></label>
+                <input asp-for="Order.OrderDate" class="form-control" disabled />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Order.UserID" class="control-label"></label>
+                <select asp-for="Order.UserID" class="form-control form-select form-select-lg" asp-items="ViewBag.PersonID" disabled></select>
+            </div>
+            <div class="form-group  mb-3">
+                <label asp-for="Order.DeliveryAddress" class="control-label"></label>
+                <textarea asp-for="Order.DeliveryAddress" class="form-control" disabled></textarea>
+            </div>
+            <form method="post">
+                <input type="hidden" asp-for="Order.ID" />
+                <input type="submit" value="Delete" class="btn btn-danger mb-3" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<p class="h1 text-center">Order Line</p>
+
+<br />
+
+<div class="container border rounded-3">
+    <table class="table table-hover text-center">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order.Lines.First().ProductID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order.Lines.First().Quantity)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Order.Lines)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

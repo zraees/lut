@@ -1,0 +1,47 @@
+﻿@page
+@model GlobalShopping.Pages.Order.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<p class="h1 text-center">Create order</p>
+
+<br />
+
+<p>
+    <a class="btn btn-outline-primary" asp-page="Index">< Order list</a>
+</p>
+
+<div class="container border rounded-3">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group  mb-3">
+                    <label asp-for="Order.OrderDate" class="control-label"></label>
+                    <input asp-for="Order.OrderDate" class="form-control" />
+                    <span asp-validation-for="Order.OrderDate" class="text-danger"></span>
+                </div>
+                <div class="form-group  mb-3">
+                    <label asp-for="Order.UserID" class="control-label"></label>
+                    <select asp-for="Order.UserID" class="form-control form-select form-select-lg" asp-items="ViewBag.PersonID"></select>
+                </div>
+                <div class="form-group  mb-3">
+                    <label asp-for="Order.DeliveryAddress" class="control-label"></label>
+                    <textarea asp-for="Order.DeliveryAddress" class="form-control"></textarea>
+                    <span asp-validation-for="Order.DeliveryAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

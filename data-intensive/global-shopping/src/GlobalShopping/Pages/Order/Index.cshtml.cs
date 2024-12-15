@@ -33,8 +33,20 @@ namespace GlobalShopping.Pages.Order
             var orders = await _context.Order
                 .ToListAsync();
             var persons = await _context.UserAccount.ToListAsync();
-            Order = orders.Join(persons, m => m.UserID, t => t.ID, (m, t) => { var order = m; order.User = t; return order; }).ToList();
-
+            var query1 =
+    from o in orders
+    join p in persons on o.UserID equals p.ID
+    select new Models.Order
+    {
+        DeliveryAddress = o.DeliveryAddress,
+        ID = o.ID,
+        UserID = o.UserID,
+        User = p,
+        OrderDate = o.OrderDate,
+        OrderValue = o.OrderValue
+    };
+            //Order = orders.Join(persons, m => m.UserID, t => t.ID, (m, t) => { var order = m; order.User = t; return order; }).ToList();
+            Order = query1.ToList();
         }
     }
 }

@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GlobalShopping.Migrations
+namespace GlobalShopping.Migrations.AsiaShopping
 {
-    [DbContext(typeof(USAShoppingContext))]
-    [Migration("20241210203146_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(AsiaShoppingContext))]
+    [Migration("20241214141651_AsiaContextInitCreate")]
+    partial class AsiaContextInitCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,11 @@ namespace GlobalShopping.Migrations
 
             modelBuilder.Entity("GlobalShopping.Models.Order", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("varchar");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("DeliveryAddress")
                         .IsRequired()
@@ -38,9 +41,8 @@ namespace GlobalShopping.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("varchar");
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -51,16 +53,17 @@ namespace GlobalShopping.Migrations
 
             modelBuilder.Entity("GlobalShopping.Models.OrderLine", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("varchar");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("OrderID")
-                        .IsRequired()
-                        .HasColumnType("varchar");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("ProductID")
-                        .IsRequired()
-                        .HasColumnType("varchar");
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
@@ -76,8 +79,11 @@ namespace GlobalShopping.Migrations
 
             modelBuilder.Entity("GlobalShopping.Models.Product", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("varchar");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -103,8 +109,11 @@ namespace GlobalShopping.Migrations
 
             modelBuilder.Entity("GlobalShopping.Models.UserAccount", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("varchar");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -127,15 +136,17 @@ namespace GlobalShopping.Migrations
 
             modelBuilder.Entity("GlobalShopping.Models.WarehouseStock", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("varchar");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<decimal>("AvailableQty")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ProductID")
-                        .IsRequired()
-                        .HasColumnType("varchar");
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

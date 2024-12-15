@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,9 +6,7 @@ namespace GlobalShopping.Models
 {
     public class Product
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public ObjectId ID { get; set; } = ObjectId.GenerateNewId();
+        public int? ID { get; set; }
         public required string Name { get; set; }
 
         public required string Category { get; set; }
@@ -30,6 +26,7 @@ namespace GlobalShopping.Models
         }
         public bool Active { get; set; } = true;
         [NotMapped]
+        [DisplayName("Stock Qty")]
         public decimal StockQuantity { get; set; }
     }
 }

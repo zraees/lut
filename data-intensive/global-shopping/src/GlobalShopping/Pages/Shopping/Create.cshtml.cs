@@ -4,10 +4,6 @@ using GlobalShopping.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
-using System.IO;
-using System.IO.Compression;
 
 namespace GlobalShopping.Pages.Shopping
 {
@@ -54,7 +50,10 @@ namespace GlobalShopping.Pages.Shopping
                 return Page();
             }
 
+            //Save product
             _context.Product.Add(Product);
+
+            await _context.SaveChangesAsync();
 
             var stock = new WarehouseStock()
             {
@@ -62,20 +61,21 @@ namespace GlobalShopping.Pages.Shopping
                 AvailableQty = Product.StockQuantity
             };
 
+            //Save stock
             _context.WarehouseStock.Add(stock);
 
             await _context.SaveChangesAsync();
 
+            //Save product photos
             if (Product?.ProductImage != null)
             {
                 using (var memoryStream = new MemoryStream())
                 {
-                    await Product?.ProductImage?.CopyToAsync(memoryStream);
+                    await Product.ProductImage.CopyToAsync(memoryStream);
 
                     // Upload the file if less than 2 MB
                     if (memoryStream.Length < 2097152)
                     {
-                        //_mdbContext.Product.Add(Product);
                         _mdbContext.ProductImage.Add(new ProductImage() { ProductID = Product.ID, Image = memoryStream.ToArray() });
                         await _mdbContext.SaveChangesAsync();
                     }

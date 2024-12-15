@@ -32,7 +32,7 @@ namespace GlobalShopping.Pages.OrderLine
         [BindProperty]
         public Models.OrderLine OrderLine { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -80,7 +80,7 @@ namespace GlobalShopping.Pages.OrderLine
             return RedirectToPage("./Index");
         }
 
-        private bool OrderLineExists(ObjectId id)
+        private bool OrderLineExists(int? id)
         {
             return _context.OrderLine.Any(e => e.ID == id);
         }

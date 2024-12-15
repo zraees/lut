@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Bson;
 
 namespace GlobalShopping.Pages.Order
 {
@@ -31,7 +30,7 @@ namespace GlobalShopping.Pages.Order
         [BindProperty]
         public Models.Order Order { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -48,9 +47,9 @@ namespace GlobalShopping.Pages.Order
             var products = await _context.Product.ToListAsync();
             var productlines = lines.Join(products, m => m.ProductID, t => t.ID, (m, t) => { var _line = m; _line.Product = t; return _line; }).ToList();
             order.Lines = productlines;
-            order.OrderValue = order.Lines.Sum(m => m.Quantity * m.Product.Price);
+            order.OrderValue = order.Lines.Sum(m => m.Quantity * m?.Product?.Price ?? 0);
             Order = order;
-            ViewData["PersonID"] = new SelectList(_context.Set<Models.UserAccount>(), "ID", "FirstName");
+            ViewData["UserID"] = new SelectList(_context.Set<Models.UserAccount>(), "ID", "FirstName");
             return Page();
         }
 
@@ -84,7 +83,7 @@ namespace GlobalShopping.Pages.Order
             return RedirectToPage("./Index");
         }
 
-        private bool OrderExists(ObjectId id)
+        private bool OrderExists(int? id)
         {
             return _context.Order.Any(e => e.ID == id);
         }

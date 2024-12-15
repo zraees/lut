@@ -16,30 +16,6 @@ namespace GlobalShopping.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Product>().Property(m => m.ID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
-            modelBuilder.Entity<UserAccount>().Property(m => m.ID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
-            modelBuilder.Entity<OrderLine>().Property(m => m.ID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
-            modelBuilder.Entity<OrderLine>().Property(m => m.ProductID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
-            modelBuilder.Entity<Order>().Property(m => m.ID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
-            modelBuilder.Entity<Order>().Property(m => m.UserID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
-            modelBuilder.Entity<WarehouseStock>().Property(m => m.ID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
-            modelBuilder.Entity<WarehouseStock>().Property(m => m.ProductID).HasColumnType("varchar").HasConversion(
-        v => v.ToString(),
-        v => ObjectId.Parse(v));
             modelBuilder.Ignore<ProductImage>();
             modelBuilder.Ignore<ProductReview>();
         }

@@ -3,9 +3,8 @@ using GlobalShopping.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Bson;
 
-namespace GlobalShopping.Pages.Person
+namespace GlobalShopping.Pages.UserAccount
 {
     public class EditModel : PageModel
     {
@@ -28,9 +27,9 @@ namespace GlobalShopping.Pages.Person
         }
 
         [BindProperty]
-        public Models.UserAccount Person { get; set; } = default!;
+        public Models.UserAccount UserAccount { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -42,7 +41,7 @@ namespace GlobalShopping.Pages.Person
             {
                 return NotFound();
             }
-            Person = person;
+            UserAccount = person;
             return Page();
         }
 
@@ -55,7 +54,7 @@ namespace GlobalShopping.Pages.Person
                 return Page();
             }
 
-            _context.Attach(Person).State = EntityState.Modified;
+            _context.Attach(UserAccount).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +62,7 @@ namespace GlobalShopping.Pages.Person
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(Person.ID))
+                if (!PersonExists(UserAccount.ID))
                 {
                     return NotFound();
                 }
@@ -76,7 +75,7 @@ namespace GlobalShopping.Pages.Person
             return RedirectToPage("./Index");
         }
 
-        private bool PersonExists(ObjectId id)
+        private bool PersonExists(int? id)
         {
             return _context.UserAccount.Any(e => e.ID == id);
         }

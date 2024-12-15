@@ -13,7 +13,7 @@
     <a class="btn btn-outline-primary" asp-page="Create">Create New</a>
 </p>
 
-<div class="container border rounded-3">
+<div class="container border rounded-3 table-responsive" style="height:600px">
     <table class="table table-hover text-center">
         <thead>
             <tr>
@@ -39,7 +39,6 @@
                     <td>
                         <a class="btn btn-success" asp-page="/OrderLine/Create" asp-route-id="@item.ID" >Add line item</a> |
                         <a class="btn btn-info" asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                        @* <a asp-page="./Details" asp-route-id="@item.ID">Details</a> | *@
                         <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
                     </td>
                 </tr>

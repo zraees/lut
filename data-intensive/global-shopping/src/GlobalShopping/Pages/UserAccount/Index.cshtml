@@ -1,11 +1,11 @@
 ﻿@page
-@model GlobalShopping.Pages.Person.IndexModel
+@model GlobalShopping.Pages.UserAccount.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<p class="h1 text-center">Person list</p>
+<p class="h1 text-center">User list</p>
 
 <br />
 
@@ -13,25 +13,25 @@
     <a class="btn btn-outline-primary" asp-page="Create">Create New</a>
 </p>
 
-<div class="container border rounded-3">
+<div class="container border rounded-3 table-responsive" style="height:600px">
 
     <table class="table table-hover text-center">
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Person[0].FirstName)
+                    @Html.DisplayNameFor(model => model.UserAccount[0].FirstName)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Person[0].LastName)
+                    @Html.DisplayNameFor(model => model.UserAccount[0].LastName)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Person[0].DateOfBirth)
+                    @Html.DisplayNameFor(model => model.UserAccount[0].DateOfBirth)
                 </th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Person)
+            @foreach (var item in Model.UserAccount)
             {
                 <tr>
                     <td>
@@ -45,7 +45,6 @@
                     </td>
                     <td>
                         <a class="btn btn-info" asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                        @* <a asp-page="./Details" asp-route-id="@item.ID">Details</a> | *@
                         <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
                     </td>
                 </tr>

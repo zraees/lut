@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
 
-namespace GlobalShopping.Pages.Person
+namespace GlobalShopping.Pages.UserAccount
 {
-    public class DeleteModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly IDbcontext _context;
 
-        public DeleteModel([FromKeyedServices("USA")] IDbcontext usa, [FromKeyedServices("EU")] IDbcontext eu, [FromKeyedServices("AS")] IDbcontext asia)
+        public DetailsModel([FromKeyedServices("USA")] IDbcontext usa, [FromKeyedServices("EU")] IDbcontext eu, [FromKeyedServices("AS")] IDbcontext asia)
         {
             switch (RegionConfiguration.DefaultRegionID)
             {
@@ -27,10 +27,9 @@ namespace GlobalShopping.Pages.Person
             }
         }
 
-        [BindProperty]
         public Models.UserAccount Person { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -38,7 +37,6 @@ namespace GlobalShopping.Pages.Person
             }
 
             var person = await _context.UserAccount.FirstOrDefaultAsync(m => m.ID == id);
-
             if (person == null)
             {
                 return NotFound();
@@ -48,24 +46,6 @@ namespace GlobalShopping.Pages.Person
                 Person = person;
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(ObjectId? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var person = await _context.UserAccount.FindAsync(id);
-            if (person != null)
-            {
-                Person = person;
-                _context.UserAccount.Remove(Person);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
         }
     }
 }

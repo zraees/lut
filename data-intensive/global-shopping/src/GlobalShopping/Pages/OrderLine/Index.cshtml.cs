@@ -28,7 +28,7 @@ namespace GlobalShopping.Pages.OrderLine
 
         public IList<Models.OrderLine> OrderLine { get; set; } = default!;
 
-        public async Task OnGetAsync(ObjectId? id)
+        public async Task OnGetAsync(int? id)
         {
             OrderLine = await _context.OrderLine.Where(m => m.OrderID == id)
                 .Include(o => o.Order)

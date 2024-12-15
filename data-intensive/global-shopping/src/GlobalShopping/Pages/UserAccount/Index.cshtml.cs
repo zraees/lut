@@ -3,7 +3,7 @@ using GlobalShopping.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace GlobalShopping.Pages.Person
+namespace GlobalShopping.Pages.UserAccount
 {
     public class IndexModel : PageModel
     {
@@ -25,11 +25,11 @@ namespace GlobalShopping.Pages.Person
             }
         }
 
-        public IList<Models.UserAccount> Person { get; set; } = default!;
+        public IList<Models.UserAccount> UserAccount { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Person = await _context.UserAccount.ToListAsync();
+            UserAccount = await _context.UserAccount.ToListAsync();
         }
     }
 }

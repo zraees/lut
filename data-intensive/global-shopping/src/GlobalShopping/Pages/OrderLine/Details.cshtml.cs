@@ -29,7 +29,7 @@ namespace GlobalShopping.Pages.OrderLine
 
         public Models.OrderLine OrderLine { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {

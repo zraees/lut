@@ -1,7 +1,5 @@
-using GlobalShopping.Data;
 using GlobalShopping.Interfaces;
 using GlobalShopping.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,7 +19,7 @@ namespace GlobalShopping.Pages
             _usacontext = usa;
         }
         public IList<Product> Product{ get; set; } = default!;
-        public IList<Models.UserAccount> Person { get; set; } = default!;
+        public IList<Models.UserAccount> UserAccount { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -33,7 +31,7 @@ namespace GlobalShopping.Pages
             var usaPer = await _usacontext.UserAccount.ToListAsync();
             var euPer = await _eucontext.UserAccount.ToListAsync();
             var asiaPerson = await _asiacontext.UserAccount.ToListAsync();
-            Person = usaPer.Union(euPer).Union(asiaPerson).ToList();
+            UserAccount = usaPer.Union(euPer).Union(asiaPerson).ToList();
 
         }
     }

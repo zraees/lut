@@ -28,9 +28,9 @@ namespace GlobalShopping.Pages.OrderLine
             }
         }
 
-        public IActionResult OnGet(ObjectId? id)
+        public IActionResult OnGet(int? id)
         {
-            if (!id.HasValue || id.Value == ObjectId.Empty)
+            if (!id.HasValue)
             {
                 return NotFound();
             }

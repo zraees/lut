@@ -30,7 +30,7 @@ namespace GlobalShopping.Pages.OrderLine
         [BindProperty]
         public Models.OrderLine OrderLine { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -50,7 +50,7 @@ namespace GlobalShopping.Pages.OrderLine
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(ObjectId? id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
             {

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Bson;
 
 namespace GlobalShopping.Pages.Shopping
 {
@@ -34,7 +33,7 @@ namespace GlobalShopping.Pages.Shopping
         [BindProperty]
         public Product Product { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -54,7 +53,6 @@ namespace GlobalShopping.Pages.Shopping
                 {
                     using (var stream = new MemoryStream(prodImage.Image))
                     {
-                        //var image = Image.FromStream(stream);
                         product.ProductImage = new FormFile(stream, 0, stream.Length, "Product.ProductImage", product.Name + ".png")
                         {
                             Headers = new HeaderDictionary(),
@@ -83,7 +81,7 @@ namespace GlobalShopping.Pages.Shopping
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(ObjectId? id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
             {

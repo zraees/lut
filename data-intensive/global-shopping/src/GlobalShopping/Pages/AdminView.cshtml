@@ -9,7 +9,7 @@
 
 <p class="h3">Product List</p>
 
-<div class="container border rounded-3">
+<div class="container border rounded-3 table-responsive" style="height:350px">
 
     <table class="table table-hover text-center">
         <thead>
@@ -46,26 +46,26 @@
 
 <br />
 
-<p class="h3">Person List</p>
+<p class="h3">User account List</p>
 
-<div class="container border rounded-3">
+<div class="container border rounded-3 table-responsive" style="height:350px">
 
     <table class="table table-hover text-center">
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Person[0].FirstName)
+                    @Html.DisplayNameFor(model => model.UserAccount[0].FirstName)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Person[0].LastName)
+                    @Html.DisplayNameFor(model => model.UserAccount[0].LastName)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Person[0].DateOfBirth)
+                    @Html.DisplayNameFor(model => model.UserAccount[0].DateOfBirth)
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Person)
+            @foreach (var item in Model.UserAccount)
             {
                 <tr>
                     <td>

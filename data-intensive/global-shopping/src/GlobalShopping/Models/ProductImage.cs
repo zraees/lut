@@ -1,6 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace GlobalShopping.Models
 {
@@ -10,6 +9,6 @@ namespace GlobalShopping.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId ID { get; set; } = ObjectId.GenerateNewId();
         public byte[] Image { get; set; } = null!;
-        public ObjectId ProductID { get; set; }
+        public int? ProductID { get; set; }
     }
 }

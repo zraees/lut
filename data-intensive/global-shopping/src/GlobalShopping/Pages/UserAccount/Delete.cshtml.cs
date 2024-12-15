@@ -3,15 +3,14 @@ using GlobalShopping.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Bson;
 
-namespace GlobalShopping.Pages.Person
+namespace GlobalShopping.Pages.UserAccount
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly IDbcontext _context;
 
-        public DetailsModel([FromKeyedServices("USA")] IDbcontext usa, [FromKeyedServices("EU")] IDbcontext eu, [FromKeyedServices("AS")] IDbcontext asia)
+        public DeleteModel([FromKeyedServices("USA")] IDbcontext usa, [FromKeyedServices("EU")] IDbcontext eu, [FromKeyedServices("AS")] IDbcontext asia)
         {
             switch (RegionConfiguration.DefaultRegionID)
             {
@@ -27,9 +26,10 @@ namespace GlobalShopping.Pages.Person
             }
         }
 
-        public Models.UserAccount Person { get; set; } = default!;
+        [BindProperty]
+        public Models.UserAccount UserAccount { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -37,15 +37,34 @@ namespace GlobalShopping.Pages.Person
             }
 
             var person = await _context.UserAccount.FirstOrDefaultAsync(m => m.ID == id);
+
             if (person == null)
             {
                 return NotFound();
             }
             else
             {
-                Person = person;
+                UserAccount = person;
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var person = await _context.UserAccount.FindAsync(id);
+            if (person != null)
+            {
+                UserAccount = person;
+                _context.UserAccount.Remove(UserAccount);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }

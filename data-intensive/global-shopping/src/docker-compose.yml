@@ -38,12 +38,3 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
-  # migrations:
-  #   container_name: service-migrations
-  #   image: service-migrations
-  #   build:
-  #     context: .
-  #     dockerfile: GlobalShopping/Dockerfile
-  #     target: migrations
-  #   depends_on:
-  #       - sqlserverUSA

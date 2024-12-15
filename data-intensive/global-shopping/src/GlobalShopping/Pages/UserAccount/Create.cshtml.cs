@@ -3,7 +3,7 @@ using GlobalShopping.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace GlobalShopping.Pages.Person
+namespace GlobalShopping.Pages.UserAccount
 {
     public class CreateModel : PageModel
     {
@@ -31,7 +31,7 @@ namespace GlobalShopping.Pages.Person
         }
 
         [BindProperty]
-        public Models.UserAccount Person { get; set; } = default!;
+        public Models.UserAccount UserAccount { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -41,7 +41,7 @@ namespace GlobalShopping.Pages.Person
                 return Page();
             }
 
-            _context.UserAccount.Add(Person);
+            _context.UserAccount.Add(UserAccount);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

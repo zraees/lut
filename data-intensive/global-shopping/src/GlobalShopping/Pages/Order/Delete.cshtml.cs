@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Bson;
 
 namespace GlobalShopping.Pages.Order
 {
@@ -31,7 +30,7 @@ namespace GlobalShopping.Pages.Order
         [BindProperty]
         public Models.Order Order { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(ObjectId? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
@@ -52,11 +51,11 @@ namespace GlobalShopping.Pages.Order
                 order.Lines = productlines;
                 Order = order;
             }
-            ViewData["PersonID"] = new SelectList(_context.Set<Models.UserAccount>(), "ID", "FirstName");
+            ViewData["UserID"] = new SelectList(_context.Set<Models.UserAccount>(), "ID", "FirstName");
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(ObjectId? id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
             {

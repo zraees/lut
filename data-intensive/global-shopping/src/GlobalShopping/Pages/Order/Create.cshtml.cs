@@ -28,7 +28,7 @@ namespace GlobalShopping.Pages.Order
 
         public IActionResult OnGet()
         {
-            ViewData["PersonID"] = new SelectList(_context.Set<Models.UserAccount>(), "ID", "FirstName");
+            ViewData["UserID"] = new SelectList(_context.Set<Models.UserAccount>(), "ID", "FirstName");
             return Page();
         }
 

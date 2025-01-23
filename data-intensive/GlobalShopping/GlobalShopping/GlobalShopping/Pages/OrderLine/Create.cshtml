@@ -1,0 +1,61 @@
+﻿@page
+@model GlobalShopping.Pages.OrderLine.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<p class="h1 text-center">Create order line</p>
+
+<br />
+
+<p>
+    <a class="btn btn-outline-primary" asp-page="/Order/Index">< Order list</a>
+</p>
+<div class="container border rounded-3">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @* <div class="form-group mb-3">
+                    <label asp-for="OrderLine.OrderID" class="control-label"></label>
+                    <select asp-for="OrderLine.OrderID" class="form-control" asp-items="ViewBag.OrderID"></select>
+                </div> *@
+                <input type="hidden" asp-for="OrderLine.OrderID" />
+                <div class="form-group mb-3">
+                    <label asp-for="OrderLine.ProductID" class="control-label"></label>
+                    <select asp-for="OrderLine.ProductID" class="form-control  form-select form-select-lg" asp-items="ViewBag.ProductID" onchange="showStockBalance()"></select>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label">Available Stock</label>
+                    <select class="form-control form-select form-select-lg" id="StockBalance" asp-items="ViewBag.StockBalance" disabled></select>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="OrderLine.Quantity" class="control-label"></label>
+                    <input asp-for="OrderLine.Quantity" class="form-control" />
+                    <span asp-validation-for="OrderLine.Quantity" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function showStockBalance(){
+           var selectedFilter = $("#OrderLine_ProductID").val();
+           $("#StockBalance").val(selectedFilter);
+        }
+
+        $(function () {
+            showStockBalance();
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

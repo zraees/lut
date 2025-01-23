@@ -1,0 +1,40 @@
+﻿@page
+@model GlobalShopping.Pages.UserAccount.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<p class="h1 text-center">Delete User</p>
+
+<br />
+
+<p>
+    <a class="btn btn-outline-primary" asp-page="Index">< User list</a>
+</p>
+<div class="container border rounded-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group mb-3">
+                <label asp-for="UserAccount.FirstName" class="control-label"></label>
+                <input asp-for="UserAccount.FirstName" class="form-control" disabled />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="UserAccount.LastName" class="control-label"></label>
+                <input asp-for="UserAccount.LastName" class="form-control" disabled />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="UserAccount.DateOfBirth" class="control-label"></label>
+                <input asp-for="UserAccount.DateOfBirth" class="form-control" disabled />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="UserAccount.Active" class="control-label"></label>
+                <input asp-for="UserAccount.Active" class="form-check-input" type="checkbox" disabled />
+            </div>
+            <form method="post">
+                <input type="hidden" asp-for="UserAccount.ID" />
+                <input type="submit" value="Delete" class="btn btn-danger mb-3" />
+            </form>
+        </div>
+    </div>
+</div>

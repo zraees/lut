@@ -1,0 +1,40 @@
+services:
+  globalshopping:
+    image: ${DOCKER_REGISTRY-}globalshopping
+    build:
+      context: .
+      dockerfile: GlobalShopping/Dockerfile
+    depends_on:
+     - sqlserverUSA
+     - sqlserverEurope
+     - sqlserverAsia
+     - mongodb
+
+  sqlserverUSA:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserverUSA
+    environment:
+      SA_PASSWORD: "Your_password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+  sqlserverEurope:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserverEurope
+    environment:
+      SA_PASSWORD: "Your_password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1434:1434"
+  sqlserverAsia:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserverAsia
+    environment:
+      SA_PASSWORD: "Your_password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1435:1435"
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"

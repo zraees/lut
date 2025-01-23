@@ -1,0 +1,27 @@
+{
+  "profiles": {
+    "web": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "globalshopping",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "serviceActions": {
+        "globalshopping": "StartDebugging",
+        "sqlserverEurope": "StartWithoutDebugging",
+        "sqlserverUSA": "StartWithoutDebugging",
+        "mongodb": "StartWithoutDebugging"
+      }
+    },
+    "containers": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "globalshopping": "DoNotStart",
+        "sqlserverEurope": "StartWithoutDebugging",
+        "sqlserverUSA": "StartWithoutDebugging",
+        "mongodb": "StartWithoutDebugging"
+      }
+    }
+  }
+}

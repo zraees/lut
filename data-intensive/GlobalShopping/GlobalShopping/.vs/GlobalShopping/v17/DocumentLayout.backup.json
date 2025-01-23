@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\madha\\source\\repos\\GlobalShopping\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{07FECBF9-19B1-472D-A07D-285A508F84BB}|GlobalShopping\\GlobalShopping.csproj|c:\\users\\madha\\source\\repos\\globalshopping\\globalshopping\\migrations\\europeshopping\\20241214141624_eucontextinitcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07FECBF9-19B1-472D-A07D-285A508F84BB}|GlobalShopping\\GlobalShopping.csproj|solutionrelative:globalshopping\\migrations\\europeshopping\\20241214141624_eucontextinitcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20241214141624_EUContextInitCreate.cs",
+              "DocumentMoniker": "C:\\Users\\madha\\source\\repos\\GlobalShopping\\GlobalShopping\\Migrations\\EuropeShopping\\20241214141624_EUContextInitCreate.cs",
+              "RelativeDocumentMoniker": "GlobalShopping\\Migrations\\EuropeShopping\\20241214141624_EUContextInitCreate.cs",
+              "ToolTip": "C:\\Users\\madha\\source\\repos\\GlobalShopping\\GlobalShopping\\Migrations\\EuropeShopping\\20241214141624_EUContextInitCreate.cs",
+              "RelativeToolTip": "GlobalShopping\\Migrations\\EuropeShopping\\20241214141624_EUContextInitCreate.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAYwMgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T11:42:53.249Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

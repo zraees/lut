@@ -1,0 +1,48 @@
+﻿@page
+@model GlobalShopping.Pages.Order.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="h1 text-center">Order list</p>
+
+<br />
+
+<p>
+    <a class="btn btn-outline-primary" asp-page="Create">Create New</a>
+</p>
+
+<div class="container border rounded-3 table-responsive" style="height:600px">
+    <table class="table table-hover text-center">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order[0].OrderDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order[0].User.FirstName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Order)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FirstName)
+                    </td>
+                    <td>
+                        <a class="btn btn-success" asp-page="/OrderLine/Create" asp-route-id="@item.ID" >Add line item</a> |
+                        <a class="btn btn-info" asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

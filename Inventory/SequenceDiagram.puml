@@ -1,0 +1,70 @@
+@startuml
+actor User
+participant Main
+participant InventoryManager
+participant AddProduct
+participant ViewProducts
+participant UpdateQuantity
+participant DeleteProduct
+participant SearchProduct
+participant SortProductsByName
+participant SortProductsByPrice
+participant CheckLowStock
+participant FilterByPriceRange
+participant ClearInventory
+
+User -> Main: Start application
+Main -> InventoryManager: loadInventory()
+
+loop User interacts
+    User -> Main: Choose an option
+    alt Add Product
+        Main -> AddProduct: execute()
+        AddProduct -> InventoryManager: Add product
+    end
+    alt View Products
+        Main -> ViewProducts: execute()
+        ViewProducts -> InventoryManager: Get all products
+    end
+    alt Update Product Quantity
+        Main -> UpdateQuantity: execute()
+        UpdateQuantity -> InventoryManager: Update product quantity
+    end
+    alt Delete Product
+        Main -> DeleteProduct: execute()
+        DeleteProduct -> InventoryManager: Delete product
+    end
+    alt Search Product
+        Main -> SearchProduct: execute()
+        SearchProduct -> InventoryManager: Search for product
+    end
+    alt Generate Inventory Report
+        Main -> InventoryManager: getInventory()
+    end
+    alt Sort Products by Name
+        Main -> SortProductsByName: execute()
+        SortProductsByName -> InventoryManager: Sort products by name
+    end
+    alt Sort Products by Price
+        Main -> SortProductsByPrice: execute()
+        SortProductsByPrice -> InventoryManager: Sort products by price
+    end
+    alt Check Low Stock Products
+        Main -> CheckLowStock: execute()
+        CheckLowStock -> InventoryManager: Check low stock products
+    end
+    alt Filter Products by Price Range
+        Main -> FilterByPriceRange: execute()
+        FilterByPriceRange -> InventoryManager: Filter products by price range
+    end
+    alt Clear Inventory
+        Main -> ClearInventory: execute()
+        ClearInventory -> InventoryManager: Clear all products
+    end
+    alt Save and Exit
+        Main -> InventoryManager: saveInventory()
+        Main -> User: Display goodbye message
+        User -> Main: Exit application
+    end
+end
+@enduml

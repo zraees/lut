@@ -1,0 +1,97 @@
+@startuml
+
+class Main {
+  + main(String[] args)
+}
+
+class InventoryManager {
+  + loadInventory()
+  + saveInventory()
+  + addProduct(Product product)
+  + deleteProduct(String productName)
+  + updateQuantity(String productName, int quantity)
+  + getInventory(): List<Product>
+  + searchProduct(String criteria): Product
+  + sortByName()
+  + sortByPrice()
+  + checkLowStock(): List<Product>
+  + filterByPriceRange(float minPrice, float maxPrice): List<Product>
+  + clearInventory()
+}
+
+class Product {
+  - name: String
+  - price: float
+  - quantity: int
+  + getName(): String
+  + getPrice(): float
+  + getQuantity(): int
+  + setName(String name)
+  + setPrice(float price)
+  + setQuantity(int quantity)
+}
+
+class AddProduct {
+  + execute()
+}
+
+class ViewProducts {
+  + execute()
+}
+
+class UpdateQuantity {
+  + execute()
+}
+
+class DeleteProduct {
+  + execute()
+}
+
+class SearchProduct {
+  + execute()
+}
+
+class SortProductsByName {
+  + execute()
+}
+
+class SortProductsByPrice {
+  + execute()
+}
+
+class CheckLowStock {
+  + execute()
+}
+
+class FilterByPriceRange {
+  + execute()
+}
+
+class ClearInventory {
+  + execute()
+}
+
+Main --> InventoryManager
+InventoryManager --> Product
+Main --> AddProduct
+Main --> ViewProducts
+Main --> UpdateQuantity
+Main --> DeleteProduct
+Main --> SearchProduct
+Main --> SortProductsByName
+Main --> SortProductsByPrice
+Main --> CheckLowStock
+Main --> FilterByPriceRange
+Main --> ClearInventory
+AddProduct --> InventoryManager
+ViewProducts --> InventoryManager
+UpdateQuantity --> InventoryManager
+DeleteProduct --> InventoryManager
+SearchProduct --> InventoryManager
+SortProductsByName --> InventoryManager
+SortProductsByPrice --> InventoryManager
+CheckLowStock --> InventoryManager
+FilterByPriceRange --> InventoryManager
+ClearInventory --> InventoryManager
+
+@enduml

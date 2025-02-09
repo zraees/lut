@@ -82,15 +82,26 @@ if not os.path.exists(fasttext_train_file):
         header=False,
         quoting=3,  # QUOTE_NONE (3) prevents unnecessary quotes
         escapechar='\\'  # Specify escape character to handle special characters
-)
+    )
 
 # 📌 Step 8: Train FastText Model
+# ft_model = fasttext.train_supervised(
+#     input=fasttext_train_file, 
+#     lr=0.01,  # Adjust learning rate for fine-tuning
+#     epoch=90,  # Increase epochs for better training
+#     wordNgrams=2,
+#     dim=300  # Dimension of the embeddings
+# )
+
 ft_model = fasttext.train_supervised(
-    input=fasttext_train_file, 
-    lr=0.01,  # Adjust learning rate for fine-tuning
-    epoch=90,  # Increase epochs for better training
-    wordNgrams=2,
-    dim=300  # Dimension of the embeddings
+    input=fasttext_train_file,
+    lr=0.01,         # Adjust learning rate for better convergence
+    epoch=150,       # Increase epochs for better training
+    wordNgrams=3,    # Use 3-grams for capturing more context
+    dim=500,         # Increase dimension for richer word vectors
+    loss='softmax',  # Change loss function for better results in text classification
+    bucket=2000000,  # Increase the bucket size for better handling of larger vocab
+    minCount=3       # Consider only words with frequency higher than 5
 )
 
 # sample_text = "__label__1 This is a sample review."

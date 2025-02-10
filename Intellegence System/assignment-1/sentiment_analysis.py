@@ -39,38 +39,38 @@ test_df['clean_text'] = test_df['text'].apply(preprocess_text)
 
 # Step to Split Data in varaibles
 X_train = train_df['clean_text']
-y_train = train_df['label']
+y__train = train_df['label']
 X_test = test_df['clean_text']
-y_test = test_df['label']
+y__test = test_df['label']
 
 # Step to Feature Extraction with TF-IDF (suggested in excercise class)
 vectorizer_raw = TfidfVectorizer()
 vectorizer_stop = TfidfVectorizer(stop_words="english")
 
-X_train_tfidf = vectorizer_raw.fit_transform(X_train)
-X_test_tfidf = vectorizer_raw.transform(X_test)
+X__train_tfidf = vectorizer_raw.fit_transform(X_train)
+X__test_tfidf = vectorizer_raw.transform(X_test)
 
-X_train_tfidf_stop = vectorizer_stop.fit_transform(X_train)
-X_test_tfidf_stop = vectorizer_stop.transform(X_test)
+X__train_tfidf_stop = vectorizer_stop.fit_transform(X_train)
+X__test_tfidf_stop = vectorizer_stop.transform(X_test)
 
 # Important Step; Train Logistic Regression Models ( approach 1 & 2 )
-log_reg = LogisticRegression(max_iter=1000)
-log_reg.fit(X_train_tfidf, y_train)
-y_pred_tfidf = log_reg.predict(X_test_tfidf)
+log__reg = LogisticRegression(max_iter=1000)
+log__reg.fit(X__train_tfidf, y__train)
+y_pred_tfidf = log__reg.predict(X__test_tfidf)
 
-log_reg_stop = LogisticRegression(max_iter=1000)
-log_reg_stop.fit(X_train_tfidf_stop, y_train)
-y_pred_tfidf_stop = log_reg_stop.predict(X_test_tfidf_stop)
+log__reg_stop = LogisticRegression(max_iter=1000)
+log__reg_stop.fit(X__train_tfidf_stop, y__train)
+y__pred_tfidf_stop = log__reg_stop.predict(X__test_tfidf_stop)
 
 # 3rd approach Step: Train FastText Model from File
-fasttext_train_file = "fasttext_train.txt"
+fasttext_train_txt_file = "fasttext_train.txt"
 
-if not os.path.exists(fasttext_train_file):
-    print("Formatting data for FastText...")
+if not os.path.exists(fasttext_train_txt_file):
+    print("Formatting data for FastText ...")
     
     train_df['fasttext_label'] = '__label__' + train_df['label'].astype(str)
     train_df[['fasttext_label', 'clean_text']].to_csv(
-        fasttext_train_file,
+        fasttext_train_txt_file,
         index=False,
         header=False,
         sep=' ',            # Use space as separator
@@ -80,14 +80,14 @@ if not os.path.exists(fasttext_train_file):
 
 # Step to Train FastText Model (fine-tuning) but unfortunately didnt get good results
 ft_model = fasttext.train_supervised(
-    input=fasttext_train_file,
+    input=fasttext_train_txt_file,
     lr=0.01,         # set learning rate for better convergence
     epoch=150,       # Increase epochs for better training
     wordNgrams=3,    # Use 3-grams for capturing more context
     dim=500,         # Increase dimension for richer word vectors
     loss='softmax',  # Change loss function for better results in text classification
     bucket=2000000,  # Increase the bucket size for better handling of larger vocab
-    minCount=3       # Consider only words with frequency higher than 3
+    minCount=5       # Consider only words with frequency higher than 5
 )
 
 # sample_text = "__label__1 This is a sample review."
@@ -125,10 +125,10 @@ def predict_with_fasttext(model, texts):
     return predictions
 
 # Predict on test data
-y_pred_ft = predict_with_fasttext(ft_model, X_test)
+y__pred_ft = predict_with_fasttext(ft_model, X_test)
 
 # Print predictions
-#print("FastText Predictions:", y_pred_ft[:10])  # Displaying the first 10 predictions
+#print("FastText Predictions:", y__pred_ft[:10])  # Displaying the first 10 predictions
 
 # Final Step to Evaluate All Models
 def evaluate_model(y_true, y_pred, model_name):
@@ -141,8 +141,8 @@ def evaluate_model(y_true, y_pred, model_name):
     except ValueError as e:
         print(f"Error in {model_name} evaluation: {e}")
 
-evaluate_model(y_test, y_pred_tfidf, "Logistic Regression (TF-IDF)")
-evaluate_model(y_test, y_pred_tfidf_stop, "Logistic Regression (TF-IDF & Stopword Filtering)")
-evaluate_model(y_test, y_pred_ft, "FastText Model")
+evaluate_model(y__test, y_pred_tfidf, "Logistic Regression (TF-IDF)")
+evaluate_model(y__test, y__pred_tfidf_stop, "Logistic Regression (TF-IDF & Stopword Filtering)")
+evaluate_model(y__test, y__pred_ft, "FastText Model")
 
 print("\n Sentiment Analysis on IMDb Completed Successfully!")

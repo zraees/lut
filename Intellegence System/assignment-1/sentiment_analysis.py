@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from nltk.tokenize import word_tokenize
 
-# 📌 Step 1: Download necessary NLTK data
+# Initial setup: Download necessary NLTK data (if not already downloaded)
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
@@ -24,28 +24,28 @@ except LookupError:
 # nltk.download('punkt')
 # nltk.download('punkt_tab')
 
-# 📌 Step 2: Load Train and Test Datasets
+# Step to Load Train and Test Datasets
 print("Loading training and testing datasets...")
 train_df = pd.read_csv("IMDB Dataset Train.csv")
 test_df = pd.read_csv("IMDB Dataset Test.csv")
 
-# 📌 Step 3: Preprocess Text Data
+# Step to Preprocess Text Data (1- Tokenize & lowercase, 2- Remove non-alphanumeric)
 def preprocess_text(text):
-    tokens = word_tokenize(text.lower())  # Tokenize & lowercase
-    return ' '.join([word for word in tokens if word.isalnum()])  # Remove non-alphanumeric
+    tokens = word_tokenize(text.lower())  
+    return ' '.join([word for word in tokens if word.isalnum()])
 
 train_df['clean_text'] = train_df['text'].apply(preprocess_text)
 test_df['clean_text'] = test_df['text'].apply(preprocess_text)
 
-# 📌 Step 4: Split Data
+# Step to Split Data in varaibles
 X_train = train_df['clean_text']
 y_train = train_df['label']
 X_test = test_df['clean_text']
 y_test = test_df['label']
 
-# 📌 Step 5: Feature Extraction with TF-IDF
+# Step to Feature Extraction with TF-IDF (suggested in excercise class)
 vectorizer_raw = TfidfVectorizer()
-vectorizer_stop = TfidfVectorizer(stop_words="english")  
+vectorizer_stop = TfidfVectorizer(stop_words="english")
 
 X_train_tfidf = vectorizer_raw.fit_transform(X_train)
 X_test_tfidf = vectorizer_raw.transform(X_test)
@@ -53,7 +53,7 @@ X_test_tfidf = vectorizer_raw.transform(X_test)
 X_train_tfidf_stop = vectorizer_stop.fit_transform(X_train)
 X_test_tfidf_stop = vectorizer_stop.transform(X_test)
 
-# 📌 Step 6: Train Logistic Regression Models
+# Important Step; Train Logistic Regression Models ( approach 1 & 2 )
 log_reg = LogisticRegression(max_iter=1000)
 log_reg.fit(X_train_tfidf, y_train)
 y_pred_tfidf = log_reg.predict(X_test_tfidf)
@@ -62,13 +62,7 @@ log_reg_stop = LogisticRegression(max_iter=1000)
 log_reg_stop.fit(X_train_tfidf_stop, y_train)
 y_pred_tfidf_stop = log_reg_stop.predict(X_test_tfidf_stop)
 
-
-# 📌 Step 7: Train FastText Model from File
-# import fasttext
-# import os
-# import numpy as np
-
-# 📌 Step 7: Train FastText Model from File
+# 3rd approach Step: Train FastText Model from File
 fasttext_train_file = "fasttext_train.txt"
 
 if not os.path.exists(fasttext_train_file):
@@ -78,30 +72,22 @@ if not os.path.exists(fasttext_train_file):
     train_df[['fasttext_label', 'clean_text']].to_csv(
         fasttext_train_file,
         index=False,
-        sep=' ',  # Use space as separator
         header=False,
-        quoting=3,  # QUOTE_NONE (3) prevents unnecessary quotes
-        escapechar='\\'  # Specify escape character to handle special characters
+        sep=' ',            # Use space as separator
+        quoting=3,          # QUOTE_NONE (3) prevents unnecessary quotes
+        escapechar='\\'     # Specify escape character to handle special characters
     )
 
-# 📌 Step 8: Train FastText Model
-# ft_model = fasttext.train_supervised(
-#     input=fasttext_train_file, 
-#     lr=0.01,  # Adjust learning rate for fine-tuning
-#     epoch=90,  # Increase epochs for better training
-#     wordNgrams=2,
-#     dim=300  # Dimension of the embeddings
-# )
-
+# Step to Train FastText Model (fine-tuning) but unfortunately didnt get good results
 ft_model = fasttext.train_supervised(
     input=fasttext_train_file,
-    lr=0.01,         # Adjust learning rate for better convergence
+    lr=0.01,         # set learning rate for better convergence
     epoch=150,       # Increase epochs for better training
     wordNgrams=3,    # Use 3-grams for capturing more context
     dim=500,         # Increase dimension for richer word vectors
     loss='softmax',  # Change loss function for better results in text classification
     bucket=2000000,  # Increase the bucket size for better handling of larger vocab
-    minCount=3       # Consider only words with frequency higher than 5
+    minCount=3       # Consider only words with frequency higher than 3
 )
 
 # sample_text = "__label__1 This is a sample review."
@@ -117,13 +103,13 @@ ft_model = fasttext.train_supervised(
 
 # print(f"Sample Prediction: {labels}, Probabilities: {probs}")
 
-# 📌 Step 9: Predict with FastText Model
+# Step to Predict using FastText Model
 def predict_with_fasttext(model, texts):
     predictions = []
     for text in texts:
         try:
             # Ensure the text is a single line by removing any newlines
-            text = text.replace('\n', ' ').strip()  # Remove newline and strip leading/trailing spaces
+            text = text.replace('\n', ' ').strip()
             labels, probs = model.predict(list(text))
             
             if len(labels[0]) > 0:
@@ -144,7 +130,7 @@ y_pred_ft = predict_with_fasttext(ft_model, X_test)
 # Print predictions
 #print("FastText Predictions:", y_pred_ft[:10])  # Displaying the first 10 predictions
 
-# 📌 Step 10: Evaluate All Models
+# Final Step to Evaluate All Models
 def evaluate_model(y_true, y_pred, model_name):
     try:
         print(f"\n🔹 {model_name} Performance:")
@@ -156,7 +142,7 @@ def evaluate_model(y_true, y_pred, model_name):
         print(f"Error in {model_name} evaluation: {e}")
 
 evaluate_model(y_test, y_pred_tfidf, "Logistic Regression (TF-IDF)")
-evaluate_model(y_test, y_pred_tfidf_stop, "Logistic Regression (TF-IDF + Stopword Filtering)")
+evaluate_model(y_test, y_pred_tfidf_stop, "Logistic Regression (TF-IDF & Stopword Filtering)")
 evaluate_model(y_test, y_pred_ft, "FastText Model")
 
-print("\n✅ Sentiment Analysis Completed Successfully!")
+print("\n Sentiment Analysis on IMDb Completed Successfully!")

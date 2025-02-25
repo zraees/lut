@@ -1,4 +1,5 @@
 package com.example;
+
 public class CheckLowStock {
     private final InventoryManager inventoryManager;
 

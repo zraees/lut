@@ -8,7 +8,7 @@ import java.io.InputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AddAndViewProductTest {
+public class AddAndCheckProductTest {
     private InventoryManager inventoryManager;
 
     @BeforeEach
@@ -18,15 +18,15 @@ public class AddAndViewProductTest {
 
     @Test
     public void testAddAndViewProduct() {
-        // Simulate user input
+        // Simulate user action or input
         String simulatedInput = "1\nPlay Station\n20\n315.0\n";
         InputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(in);
 
         AddProduct addProduct = new AddProduct(inventoryManager);
-        addProduct.execute(); // This will read from System.in
+        addProduct.execute(); // This will read from System.in, that defined above
 
-        // Check if the product was added correctly
+        // Checking; the product was added as expected
         assertEquals(1, inventoryManager.getInventory().size());
         Product addedProduct = inventoryManager.getInventory().get(0);
         assertEquals("Play Station", addedProduct.getName());

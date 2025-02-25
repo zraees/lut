@@ -1,6 +1,7 @@
 com/example/InventoryManager.class
 com/example/Product.class
 com/example/SortProductsByName.class
+com/example/UpdateProductPrice.class
 com/example/ClearInventory.class
 com/example/ViewProducts.class
 com/example/SearchProduct.class

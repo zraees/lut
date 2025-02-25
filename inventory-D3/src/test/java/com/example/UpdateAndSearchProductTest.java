@@ -14,26 +14,26 @@ public class UpdateAndSearchProductTest {
     @BeforeEach
     public void setUp() {
         inventoryManager = new InventoryManager();
+        inventoryManager.addProduct(new Product(1, "Product One", 8, 10.2));
     }
 
     @Test
-    public void testAddAndViewProduct() {
-        // Prepare simulated user input for adding a product
-        String simulatedInput = "1\nNew Product\n10\n15.0\n"; // Product ID, Name, Quantity, Price
+    public void testAddAndCheckProduct() {
+        // simulate user action / input for updating a product
+        String simulatedInput = "1\n120\n"; // Product ID, Name, Quantity, Price
         InputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
-        System.setIn(in); // Redirect standard input to the simulated input
+        System.setIn(in); // pointing standard input to the simulated input
 
-        // Create an instance of AddProduct and execute the method
-        AddProduct addProduct = new AddProduct(inventoryManager);
-        addProduct.execute(); // This will read from the redirected System.in
+        // Create an object of UpdateQuantity and exec the method 
+        UpdateQuantity updateQuantity = new UpdateQuantity(inventoryManager);
+        updateQuantity.execute();   // This will read from the redirected System.in
 
-        // Verify that the product was added to the inventory
-        assertEquals(1, inventoryManager.getInventory().size(), "Inventory size should be 1 after adding a product.");
+        // checking that the product is successfully added
+        assertEquals(1, inventoryManager.getInventory().size(), "Inventory size equals to 1 after adding this product.");
         
-        // Retrieve the added product and verify its properties
-        Product addedProduct = inventoryManager.getInventory().get(0);
-        assertEquals("New Product", addedProduct.getName(), "Product name should match the input.");
-        assertEquals(10, addedProduct.getQuantity(), "Product quantity should match the input.");
-        assertEquals(15.0, addedProduct.getPrice(), "Product price should match the input.");
+        // Fetch the recently updated product and checking its properties
+        Product updatedProduct = inventoryManager.getInventory().get(0);
+        assertEquals(120, updatedProduct.getQuantity(), "Product quantity is matching with the input.");
+        
     }
 }
